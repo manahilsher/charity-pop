@@ -1,0 +1,34 @@
+type Campaign @model {
+  id: ID!
+  name: String!
+  blurb: String!
+  image: String!
+  url: String!
+  goal: Int!
+  totalRaised: Int!
+  balloonBundles: [BalloonBundle]
+    @connection(keyName: "byCampaign", fields: ["id"])
+}
+
+type BalloonBundle @model @key(name: "byCampaign", fields: ["campaignID"]) {
+  id: ID!
+  active: Boolean!
+  totalRaised: Int!
+  totalPerRound: Int!
+  roundsCompleted: Int!
+  campaignID: ID!
+  campaign: Campaign @connection(fields: ["campaignID"])
+  balloons: [Balloon] @connection(keyName: "byBalloonBundle", fields: ["id"])
+}
+
+type Balloon @model @key(name: "byBalloonBundle", fields: ["balloonBundleID"]) {
+  id: ID!
+  value: Int!
+  currency: String!
+  color: String!
+  popStatus: Int!
+  position: Float!
+  size: Float!
+  balloonBundleID: ID!
+  balloonBundle: BalloonBundle @connection(fields: ["balloonBundleID"])
+}

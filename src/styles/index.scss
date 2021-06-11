@@ -1,0 +1,19 @@
+:root {
+  --color-primary: #0e021a;
+  --color-secondary: #e4d01c;
+  --color-red: #ff4141;
+  --color-blue: #87d7ff;
+  --color-green: #89e1b3;
+}
+
+.background-red {
+  background-color: var(--color-red);
+}
+
+.background-blue {
+  background-color: var(--color-blue);
+}
+
+.background-green {
+  background-color: var(--color-green);
+}
