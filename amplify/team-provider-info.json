@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-charitypop-dev-12659-authRole",
+      "UnauthRoleArn": "arn:aws:iam::112837473724:role/amplify-charitypop-dev-12659-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::112837473724:role/amplify-charitypop-dev-12659-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-charitypop-dev-12659-deployment",
+      "UnauthRoleName": "amplify-charitypop-dev-12659-unauthRole",
+      "StackName": "amplify-charitypop-dev-12659",
+      "StackId": "arn:aws:cloudformation:us-east-1:112837473724:stack/amplify-charitypop-dev-12659/a7755100-ca75-11eb-876e-0a54954134e7",
+      "AmplifyAppId": "d2sqbc37cjrjsx"
+    }
+  }
+}

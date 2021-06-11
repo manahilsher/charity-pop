@@ -1,0 +1,93 @@
+import {
+  FETCH_BALLOONS,
+  // CREATE_BALLOON,
+  // FETCH_BALLOON
+  // UPDATE_BALLOON,
+  // DELETE_BALLOON
+  FETCH_CAMPAIGNS
+  // CREATE_CAMPAIGN,
+  // FETCH_CAMPAIGN
+  // UPDATE_CAMPAIGN,
+  // DELETE_CAMPAIGN
+} from './types';
+
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import { createBalloon, createCampaign } from '../../graphql/mutations';
+import { listBalloons, listCampaigns } from '../../graphql/queries';
+
+import awsExports from '../../aws-exports';
+Amplify.configure(awsExports);
+
+/* BALLOONS */
+
+export const createBalloonThunk = balloon => async () => {
+  console.log('create balloon');
+  console.log(balloon);
+  try {
+    await API.graphql(graphqlOperation(createBalloon, { input: balloon }));
+  } catch (err) {
+    console.log('error creating balloon:', err);
+  }
+};
+
+export const fetchBalloonThunk = id => dispatch => {
+  console.log('fetch balloon thunk');
+  // dispatch({ type: FETCH_BALLOON, payload: { id } });
+};
+
+export const fetchBalloonsThunk = () => async dispatch => {
+  try {
+    const balloonData = await API.graphql(graphqlOperation(listBalloons));
+    const balloons = balloonData.data.listBalloons.items;
+    dispatch({ type: FETCH_BALLOONS, payload: balloons });
+  } catch (err) {
+    console.log('error fetching balloons');
+  }
+};
+
+export const editBalloonThunk = balloon => () => {
+  console.log('edit balloon');
+  console.log(balloon);
+};
+
+export const deleteBalloonThunk = id => () => {
+  console.log('delete balloon');
+  console.log(id);
+};
+
+/* CAMPAIGNS */
+
+export const createCampaignThunk = campaign => async () => {
+  console.log('create campaign');
+  console.log(campaign);
+  try {
+    await API.graphql(graphqlOperation(createCampaign, { input: campaign }));
+  } catch (err) {
+    console.log('error creating campaign:', err);
+  }
+};
+
+export const fetchCampaignThunk = id => dispatch => {
+  console.log('fetch campaign thunk');
+  // dispatch({ type: FETCH_CAMPAIGN, payload: { id } });
+};
+
+export const fetchCampaignsThunk = () => async dispatch => {
+  try {
+    const campaignData = await API.graphql(graphqlOperation(listCampaigns));
+    const campaigns = campaignData.data.listCampaigns.items;
+    dispatch({ type: FETCH_CAMPAIGNS, payload: campaigns });
+  } catch (err) {
+    console.log('error fetching campaigns');
+  }
+};
+
+export const editCampaignThunk = campaign => () => {
+  console.log('edit campaign');
+  console.log(campaign);
+};
+
+export const deleteCampaignThunk = id => () => {
+  console.log('delete campaign');
+  console.log(id);
+};
