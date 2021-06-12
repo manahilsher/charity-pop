@@ -10,6 +10,11 @@
       "StackName": "amplify-charitypop-dev-12659",
       "StackId": "arn:aws:cloudformation:us-east-1:112837473724:stack/amplify-charitypop-dev-12659/a7755100-ca75-11eb-876e-0a54954134e7",
       "AmplifyAppId": "d2sqbc37cjrjsx"
+    },
+    "categories": {
+      "auth": {
+        "charitypopc31dcb46": {}
+      }
     }
   }
 }
