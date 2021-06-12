@@ -16,5 +16,13 @@
         }
       }
     }
+  },
+  "auth": {
+    "charitypopc31dcb46": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
   }
 }
