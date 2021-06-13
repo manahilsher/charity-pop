@@ -4,14 +4,15 @@ import { connect } from 'react-redux';
 import {
   editCampaignThunk,
   deleteCampaignThunk,
-  createCampaignThunk,
   fetchCampaignsThunk
 } from '../store/actions';
 import CampaignCard from '../components/CampaignCard';
+import CreateCampaignButton from '../components/CreateCampaignButton';
 
 class Campaigns extends React.Component {
   async componentDidMount() {
     await this.props.fetchCampaignsThunk();
+    console.log('um');
   }
 
   onCreateCampaign = () => {
@@ -39,7 +40,7 @@ class Campaigns extends React.Component {
     return (
       <>
         <div className='ui container'>
-          <button onClick={this.onCreateCampaign}>Create Campaign</button>
+          <CreateCampaignButton />
           <div>{this.props.campaigns ? this.renderCampaigns() : null}</div>
         </div>
       </>
@@ -56,6 +57,5 @@ const mapState = state => {
 export default connect(mapState, {
   fetchCampaignsThunk,
   editCampaignThunk,
-  deleteCampaignThunk,
-  createCampaignThunk
+  deleteCampaignThunk
 })(Campaigns);
