@@ -11,6 +11,7 @@ export const getCampaign = /* GraphQL */ `
       url
       goal
       totalRaised
+      ownerID
       balloonBundles {
         items {
           id
@@ -44,6 +45,7 @@ export const listCampaigns = /* GraphQL */ `
         url
         goal
         totalRaised
+        ownerID
         balloonBundles {
           nextToken
         }
@@ -71,6 +73,7 @@ export const getBalloonBundle = /* GraphQL */ `
         url
         goal
         totalRaised
+        ownerID
         balloonBundles {
           nextToken
         }
@@ -119,6 +122,7 @@ export const listBalloonBundles = /* GraphQL */ `
           url
           goal
           totalRaised
+          ownerID
           createdAt
           updatedAt
         }
@@ -158,6 +162,7 @@ export const getBalloon = /* GraphQL */ `
           url
           goal
           totalRaised
+          ownerID
           createdAt
           updatedAt
         }
