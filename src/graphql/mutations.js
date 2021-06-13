@@ -14,6 +14,7 @@ export const createCampaign = /* GraphQL */ `
       url
       goal
       totalRaised
+      ownerID
       balloonBundles {
         items {
           id
@@ -45,6 +46,7 @@ export const updateCampaign = /* GraphQL */ `
       url
       goal
       totalRaised
+      ownerID
       balloonBundles {
         items {
           id
@@ -76,6 +78,7 @@ export const deleteCampaign = /* GraphQL */ `
       url
       goal
       totalRaised
+      ownerID
       balloonBundles {
         items {
           id
@@ -114,6 +117,7 @@ export const createBalloonBundle = /* GraphQL */ `
         url
         goal
         totalRaised
+        ownerID
         balloonBundles {
           nextToken
         }
@@ -160,6 +164,7 @@ export const updateBalloonBundle = /* GraphQL */ `
         url
         goal
         totalRaised
+        ownerID
         balloonBundles {
           nextToken
         }
@@ -206,6 +211,7 @@ export const deleteBalloonBundle = /* GraphQL */ `
         url
         goal
         totalRaised
+        ownerID
         balloonBundles {
           nextToken
         }
@@ -261,6 +267,7 @@ export const createBalloon = /* GraphQL */ `
           url
           goal
           totalRaised
+          ownerID
           createdAt
           updatedAt
         }
@@ -304,6 +311,7 @@ export const updateBalloon = /* GraphQL */ `
           url
           goal
           totalRaised
+          ownerID
           createdAt
           updatedAt
         }
@@ -347,6 +355,7 @@ export const deleteBalloon = /* GraphQL */ `
           url
           goal
           totalRaised
+          ownerID
           createdAt
           updatedAt
         }

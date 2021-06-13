@@ -11,3 +11,10 @@ export const FETCH_CAMPAIGNS = 'FETCH_CAMPAIGNS';
 export const EDIT_CAMPAIGN = 'EDIT_CAMPAIGN';
 export const DELETE_CAMPAIGN = 'DELETE_CAMPAIGN';
 export const UPDATE_CAMPAIGN = 'UPDATE_CAMPAIGN';
+
+export const CREATE_USER = 'CREATE_USER';
+export const FETCH_USER = 'FETCH_USER';
+export const FETCH_USERS = 'FETCH_USERS';
+export const EDIT_USER = 'EDIT_USER';
+export const DELETE_USER = 'DELETE_USER';
+export const UPDATE_USER = 'UPDATE_USER';
