@@ -6,6 +6,7 @@ type Campaign @model {
   url: String!
   goal: Int!
   totalRaised: Int!
+  ownerID: ID!
   balloonBundles: [BalloonBundle]
     @connection(keyName: "byCampaign", fields: ["id"])
 }
