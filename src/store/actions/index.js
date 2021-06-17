@@ -4,16 +4,20 @@ import {
   // FETCH_BALLOON
   // UPDATE_BALLOON,
   // DELETE_BALLOON
-  FETCH_CAMPAIGNS
+  FETCH_CAMPAIGNS,
   // CREATE_CAMPAIGN,
-  // FETCH_CAMPAIGN
+  FETCH_CAMPAIGN
   // UPDATE_CAMPAIGN,
   // DELETE_CAMPAIGN
 } from './types';
 
 import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import { createBalloon, createCampaign } from '../../graphql/mutations';
-import { listBalloons, listCampaigns } from '../../graphql/queries';
+import {
+  listBalloons,
+  listCampaigns,
+  getCampaign
+} from '../../graphql/queries';
 
 import awsExports from '../../aws-exports';
 Amplify.configure(awsExports);
@@ -67,9 +71,20 @@ export const createCampaignThunk = campaign => async () => {
   }
 };
 
-export const fetchCampaignThunk = id => dispatch => {
+export const fetchCampaignThunk = id => async dispatch => {
   console.log('fetch campaign thunk');
-  // dispatch({ type: FETCH_CAMPAIGN, payload: { id } });
+  console.log(id);
+  try {
+    const campaignData = await API.graphql(
+      graphqlOperation(getCampaign, { id: id })
+    );
+    console.log(campaignData);
+    const campaign = campaignData.data.getCampaign;
+    dispatch({ type: FETCH_CAMPAIGN, payload: campaign });
+  } catch (err) {
+    console.log('error fetching campaign');
+    console.log(err);
+  }
 };
 
 export const fetchCampaignsThunk = () => async dispatch => {

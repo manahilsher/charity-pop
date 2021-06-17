@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import { Hub, Logger } from 'aws-amplify';
 
-// import Campaign from './pages/Campaign';
+import Campaign from './pages/Campaign';
 import Campaigns from './pages/Campaigns';
 import Profile from './pages/Profile';
 import Header from './components/Header';
@@ -44,6 +44,7 @@ const App = () => {
         <Header />
         <Switch>
           <Route path='/' exact component={Campaigns}></Route>
+          <Route path='/campaign/:id' exact component={Campaign}></Route>
           <Route
             path='/create-campaign'
             exact
