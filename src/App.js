@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { AmplifyAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import { Hub, Logger } from 'aws-amplify';
 
 // import Campaign from './pages/Campaign';
@@ -10,6 +10,7 @@ import Profile from './pages/Profile';
 import Header from './components/Header';
 import CampaignCreate from './pages/CampaignCreate';
 import Login from './pages/Login';
+import SideMenu from './components/SideMenu';
 
 const logger = new Logger('Logger', 'INFO');
 const listener = data => {
@@ -38,9 +39,9 @@ const App = () => {
   Hub.listen('auth', listener);
   return (
     <div className='App'>
-      <Header />
-      <AmplifySignOut />
       <BrowserRouter>
+        <SideMenu />
+        <Header />
         <Switch>
           <Route path='/' exact component={Campaigns}></Route>
           <Route
