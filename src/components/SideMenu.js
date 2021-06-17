@@ -23,6 +23,16 @@ class SideMenu extends React.Component {
   render() {
     return (
       <div className='side-menu'>
+        <div
+          className='opener-black'
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+          onClick={this.onOpenerClick}
+        >
+          <div className='top-triangle'></div>
+          <div className='middle-rectangle'></div>
+          <div className='bottom-triangle'></div>
+        </div>
         <div className='items-container'>
           <div className='item'>
             <i className='fas fa-tree'></i>
@@ -39,16 +49,6 @@ class SideMenu extends React.Component {
           <div className='item'>
             <i className='fas fa-tree'></i>
           </div>
-        </div>
-        <div
-          className='opener-black'
-          onMouseEnter={this.onMouseEnter}
-          onMouseLeave={this.onMouseLeave}
-          onClick={this.onOpenerClick}
-        >
-          <div className='top-triangle'></div>
-          <div className='middle-rectangle'></div>
-          <div className='bottom-triangle'></div>
         </div>
       </div>
     );
