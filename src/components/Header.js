@@ -1,13 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { AmplifySignOut } from '@aws-amplify/ui-react';
 
 class Header extends React.Component {
   render() {
     return (
       <div className='header'>
-        <div className='heading'>CHARITY POP</div>
         <div className='menu-items-container'>
-          <div>All Campaigns</div>
-          <div>Your Campaigns</div>
+          <Link to='campaigns'>
+            <div>
+              <img
+                src='/red-balloon.png'
+                alt='red-balloon-logo'
+                className='header-logo'
+              />
+            </div>
+          </Link>
+          <Link to='createcampaign' style={{ marginLeft: '15px' }}>
+            <div className='menu-item'>
+              <i className='fas fa-plus'></i>
+            </div>
+          </Link>
+        </div>
+        <div className='heading'>CHARITY POP</div>
+        <div className='signout-button-container'>
+          <AmplifySignOut />
         </div>
       </div>
     );

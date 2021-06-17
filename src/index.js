@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
-import './index.css';
+import './index.scss';
 
 import App from './App';
 import reducers from './store/reducers';
