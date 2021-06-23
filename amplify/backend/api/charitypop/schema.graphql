@@ -2,8 +2,7 @@ type Campaign @model {
   id: ID!
   name: String!
   blurb: String!
-  image: String!
-  url: String!
+  description: String!
   goal: Int!
   totalRaised: Int!
   ownerID: ID!

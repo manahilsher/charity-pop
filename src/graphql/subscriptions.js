@@ -7,8 +7,7 @@ export const onCreateCampaign = /* GraphQL */ `
       id
       name
       blurb
-      image
-      url
+      description
       goal
       totalRaised
       ownerID
@@ -36,8 +35,7 @@ export const onUpdateCampaign = /* GraphQL */ `
       id
       name
       blurb
-      image
-      url
+      description
       goal
       totalRaised
       ownerID
@@ -65,8 +63,7 @@ export const onDeleteCampaign = /* GraphQL */ `
       id
       name
       blurb
-      image
-      url
+      description
       goal
       totalRaised
       ownerID
@@ -101,8 +98,7 @@ export const onCreateBalloonBundle = /* GraphQL */ `
         id
         name
         blurb
-        image
-        url
+        description
         goal
         totalRaised
         ownerID
@@ -145,8 +141,7 @@ export const onUpdateBalloonBundle = /* GraphQL */ `
         id
         name
         blurb
-        image
-        url
+        description
         goal
         totalRaised
         ownerID
@@ -189,8 +184,7 @@ export const onDeleteBalloonBundle = /* GraphQL */ `
         id
         name
         blurb
-        image
-        url
+        description
         goal
         totalRaised
         ownerID
@@ -242,8 +236,7 @@ export const onCreateBalloon = /* GraphQL */ `
           id
           name
           blurb
-          image
-          url
+          description
           goal
           totalRaised
           ownerID
@@ -283,8 +276,7 @@ export const onUpdateBalloon = /* GraphQL */ `
           id
           name
           blurb
-          image
-          url
+          description
           goal
           totalRaised
           ownerID
@@ -324,8 +316,7 @@ export const onDeleteBalloon = /* GraphQL */ `
           id
           name
           blurb
-          image
-          url
+          description
           goal
           totalRaised
           ownerID
