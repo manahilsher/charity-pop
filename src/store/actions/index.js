@@ -94,6 +94,7 @@ export const fetchCampaignsThunk = () => async dispatch => {
     dispatch({ type: FETCH_CAMPAIGNS, payload: campaigns });
   } catch (err) {
     console.log('error fetching campaigns');
+    console.log(err);
   }
 };
 

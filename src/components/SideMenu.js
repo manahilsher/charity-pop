@@ -15,7 +15,7 @@ class SideMenu extends React.Component {
   };
 
   onOpenerClick = () => {
-    let x = document.getElementsByClassName('items-container')[0];
+    let x = document.getElementsByClassName('side-menu')[0];
     if (x.classList.contains('opened')) x.classList.remove('opened');
     else x.classList.add('opened');
   };

@@ -7,7 +7,7 @@ class Header extends React.Component {
     return (
       <div className='header'>
         <div className='menu-items-container'>
-          <Link to='campaigns'>
+          <Link to='/'>
             <div>
               <img
                 src='/red-balloon.png'
@@ -16,7 +16,7 @@ class Header extends React.Component {
               />
             </div>
           </Link>
-          <Link to='createcampaign' style={{ marginLeft: '15px' }}>
+          <Link to='/create-campaign' style={{ marginLeft: '15px' }}>
             <div className='menu-item'>
               <i className='fas fa-plus'></i>
             </div>

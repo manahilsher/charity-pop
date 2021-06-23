@@ -7,8 +7,7 @@ export const getCampaign = /* GraphQL */ `
       id
       name
       blurb
-      image
-      url
+      description
       goal
       totalRaised
       ownerID
@@ -41,8 +40,7 @@ export const listCampaigns = /* GraphQL */ `
         id
         name
         blurb
-        image
-        url
+        description
         goal
         totalRaised
         ownerID
@@ -69,8 +67,7 @@ export const getBalloonBundle = /* GraphQL */ `
         id
         name
         blurb
-        image
-        url
+        description
         goal
         totalRaised
         ownerID
@@ -118,8 +115,7 @@ export const listBalloonBundles = /* GraphQL */ `
           id
           name
           blurb
-          image
-          url
+          description
           goal
           totalRaised
           ownerID
@@ -158,8 +154,7 @@ export const getBalloon = /* GraphQL */ `
           id
           name
           blurb
-          image
-          url
+          description
           goal
           totalRaised
           ownerID

@@ -9,7 +9,14 @@ import { Link } from 'react-router-dom';
 class CampaignCreate extends React.Component {
   state = {
     user: null,
-    authFailed: false
+    authFailed: false,
+    campaign: {
+      id: '',
+      name: '',
+      blurb: '',
+      description: '',
+      goal: 10
+    }
   };
 
   async componentDidMount() {
@@ -37,16 +44,94 @@ class CampaignCreate extends React.Component {
     );
   };
 
+  createCampaign = async () => {
+    let c = { ...this.state.campaign };
+    console.log(c);
+    if (c.name === '' || c.burb === '' || c.description === '' || c.goal < 10)
+      alert('Incorrect Data');
+    else {
+      await this.props
+        .createCampaignThunk({
+          ...c,
+          totalRaised: 0,
+          ownerID: this.state.user.id
+        })
+        .then(x => {
+          console.log(x);
+        });
+    }
+  };
+
+  handleChange = event => {
+    this.setState({
+      campaign: {
+        ...this.state.campaign,
+        [event.target.name]: event.target.value
+      }
+    });
+  };
+
   render() {
-    const s = this.state.authFailed;
+    const f = this.state.authFailed;
     return (
       <>
         <div className='ui container'>
-          {s ? this.renderAuthenticationPopup() : null}
+          {f ? this.renderAuthenticationPopup() : null}
           <div
-            style={{ opacity: s ? 0.2 : 1, pointerEvents: s ? 'auto' : 'none' }}
+            style={{ opacity: f ? 0.2 : 1, pointerEvents: f ? 'none' : 'auto' }}
           >
-            Create Campaign stuff
+            <div>
+              <span>Name: </span>
+              <input
+                type='text'
+                id='name'
+                name='name'
+                value={this.state.campaign.name}
+                onChange={this.handleChange}
+              ></input>
+            </div>
+            <div>
+              <span>Url: </span>
+              <input
+                type='text'
+                id='id'
+                name='id'
+                value={this.state.campaign.id}
+                onChange={this.handleChange}
+              ></input>
+            </div>
+            <div>
+              <span>Blurb: </span>
+              <input
+                type='text'
+                id='blurb'
+                name='blurb'
+                value={this.state.campaign.blurb}
+                onChange={this.handleChange}
+              ></input>
+            </div>
+            <div>
+              <span>Description: </span>
+              <input
+                type='text'
+                id='description'
+                name='description'
+                value={this.state.campaign.description}
+                onChange={this.handleChange}
+              ></input>
+            </div>
+            <div>
+              <span>Goal: </span>
+              <input
+                type='number'
+                id='goal'
+                name='goal'
+                value={this.state.campaign.goal}
+                onChange={this.handleChange}
+                min='10'
+              ></input>
+            </div>
+            <button onClick={this.createCampaign}>Create</button>
           </div>
         </div>
       </>
