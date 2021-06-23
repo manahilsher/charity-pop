@@ -36,24 +36,7 @@
 }
 
 .header {
-  .heading {
-    font-size: 3rem;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 900;
-    letter-spacing: 2rem;
-    color: var(--color-red);
-  }
-  .menu-items-container {
-    display: flex;
-    justify-content: space-around;
-    .menu-item {
-      color: blue;
-    }
-  }
-}
-
-.header {
-  padding: 10px;
+  padding: 0 10px;
   display: grid;
   grid-template-columns: 15% auto 15%;
   align-items: center;
@@ -136,20 +119,20 @@
   display: flex;
   height: 450px;
   top: calc(50% - 200px);
-  right: 0;
+  right: -355px;
+  transition: right 1s;
   .items-container {
     background-color: black;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 50px;
     justify-content: space-around;
-    transition: width 1s;
+    width: 400px;
     .item {
       width: 30px;
       height: 30px;
       background-color: white;
       border-radius: 50%;
+      margin-left: 10px;
       i {
         display: inline-block;
         font-size: 15px;
@@ -160,9 +143,6 @@
         vertical-align: bottom;
       }
     }
-  }
-  .opened {
-    width: 500px;
   }
   .opener-black {
     margin-top: 75px;
@@ -195,39 +175,62 @@
     .top-triangle {
       width: 0;
       height: 0;
-      border-bottom: 100px solid white;
+      border-bottom: 100px solid var(--color-red);
       border-left: 30px solid transparent;
     }
     .middle-rectangle {
-      background-color: white;
+      background-color: var(--color-red);
       width: 30px;
       height: 100px;
     }
     .bottom-triangle {
       width: 0;
       height: 0;
-      border-top: 100px solid white;
+      border-top: 100px solid var(--color-red);
       border-left: 30px solid transparent;
     }
   }
+}
+.opened {
+  right: 0;
+}
+
+#text-box {
+  border: 2px solid black;
+  border-radius: 8px;
+  outline: none;
+  padding: 4px;
+  margin: 0 15px 15px 15px;
 }
 
 .feed {
   position: fixed;
   display: flex;
-  height: calc(100% - 80px);
   bottom: 0;
   top: 80px;
   width: 15%;
   min-width: 220px;
-  .f-items-container {
-    background-color: black;
+  padding-top: 10px;
+  padding-right: 2px;
+  // background-color: rgba(0, 0, 0, 0.5);
+  #f-items-container {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     .item {
-      color: var(--color-primary);
-      padding-top: 20px;
+      // color: var(--color-primary);
+      padding-bottom: 20px;
     }
   }
+  #f-items-container::-webkit-scrollbar {
+    width: 1em;
+  }
+  #f-items-container::-webkit-scrollbar-thumb {
+    background-color: var(--color-red);
+    border-radius: 12px;
+  }
+}
+
+.campaigns-container {
+  display: flex;
 }

@@ -10,7 +10,6 @@ import Profile from './pages/Profile';
 import Header from './components/Header';
 import CampaignCreate from './pages/CampaignCreate';
 import Login from './pages/Login';
-import SideMenu from './components/SideMenu';
 
 const logger = new Logger('Logger', 'INFO');
 const listener = data => {
@@ -40,7 +39,6 @@ const App = () => {
   return (
     <div className='App'>
       <BrowserRouter>
-        <SideMenu />
         <Header />
         <Switch>
           <Route path='/' exact component={Campaigns}></Route>

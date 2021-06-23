@@ -2,6 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import Feed from '../components/Feed';
+import SideMenu from '../components/SideMenu';
 import {
   editCampaignThunk,
   deleteCampaignThunk,
@@ -21,6 +22,7 @@ class Campaign extends React.Component {
       <>
         <div>
           <Feed />
+          <SideMenu />
           <div>
             {this.props.campaign ? (
               <div>
@@ -35,6 +37,7 @@ class Campaign extends React.Component {
 }
 
 const mapState = state => {
+  console.log(state.campaignsReducer);
   return {
     campaign: state.campaignsReducer.selectedCampaign
   };

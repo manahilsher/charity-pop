@@ -12,6 +12,7 @@ export default (state = { campaigns: [] }, action) => {
     case FETCH_CAMPAIGNS:
       return { ...state, campaigns: action.payload };
     case FETCH_CAMPAIGN:
+      console.log(action.payload);
       return { ...state, selectedCampaign: action.payload };
     case DELETE_CAMPAIGN:
       let newStateWithDeletedCampaign = { ...state };
