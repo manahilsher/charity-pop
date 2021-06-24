@@ -14,6 +14,7 @@ type BalloonBundle @model @key(name: "byCampaign", fields: ["campaignID"]) {
   id: ID!
   active: Boolean!
   totalRaised: Int!
+  balloonsPerRound: Int!
   totalPerRound: Int!
   roundsCompleted: Int!
   campaignID: ID!
