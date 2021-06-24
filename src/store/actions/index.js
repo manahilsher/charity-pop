@@ -6,17 +6,28 @@ import {
   // DELETE_BALLOON
   FETCH_CAMPAIGNS,
   // CREATE_CAMPAIGN,
-  FETCH_CAMPAIGN
+  FETCH_CAMPAIGN,
   // UPDATE_CAMPAIGN,
   // DELETE_CAMPAIGN
+  FETCH_BALLOONBUNDLES,
+  // CREATE_BALLOONBUNDLE,
+  FETCH_BALLOONBUNDLE
+  // UPDATE_BALLOONBUNDLE,
+  // DELETE_BALLOONBUNDLE
 } from './types';
 
 import Amplify, { API, graphqlOperation } from 'aws-amplify';
-import { createBalloon, createCampaign } from '../../graphql/mutations';
+import {
+  createBalloon,
+  createCampaign,
+  createBalloonBundle
+} from '../../graphql/mutations';
 import {
   listBalloons,
   listCampaigns,
-  getCampaign
+  getCampaign,
+  listBalloonBundles,
+  getBalloonBundle
 } from '../../graphql/queries';
 
 import awsExports from '../../aws-exports';
@@ -105,6 +116,59 @@ export const editCampaignThunk = campaign => () => {
 
 export const deleteCampaignThunk = id => () => {
   console.log('delete campaign');
+  console.log(id);
+};
+
+/* BALLOONBUNDLES */
+
+export const createBalloonBundleThunk = balloonBundle => async () => {
+  console.log('create balloonBundle');
+  console.log(balloonBundle);
+  try {
+    await API.graphql(
+      graphqlOperation(createBalloonBundle, { input: balloonBundle })
+    );
+  } catch (err) {
+    console.log('error creating balloonBundle:', err);
+  }
+};
+
+export const fetchBalloonBundleThunk = id => async dispatch => {
+  console.log('fetch balloonBundle thunk');
+  console.log(id);
+  try {
+    const balloonBundleData = await API.graphql(
+      graphqlOperation(getBalloonBundle, { id: id })
+    );
+    console.log(balloonBundleData);
+    const balloonBundle = balloonBundleData.data.getBalloonBundle;
+    dispatch({ type: FETCH_BALLOONBUNDLE, payload: balloonBundle });
+  } catch (err) {
+    console.log('error fetching balloonBundle');
+    console.log(err);
+  }
+};
+
+export const fetchBalloonBundlesThunk = () => async dispatch => {
+  try {
+    const balloonBundleData = await API.graphql(
+      graphqlOperation(listBalloonBundles)
+    );
+    const balloonBundles = balloonBundleData.data.listBalloonBundles.items;
+    dispatch({ type: FETCH_BALLOONBUNDLES, payload: balloonBundles });
+  } catch (err) {
+    console.log('error fetching balloonBundles');
+    console.log(err);
+  }
+};
+
+export const editBalloonBundleThunk = balloonBundle => () => {
+  console.log('edit balloonBundle');
+  console.log(balloonBundle);
+};
+
+export const deleteBalloonBundleThunk = id => () => {
+  console.log('delete balloonBundle');
   console.log(id);
 };
 
