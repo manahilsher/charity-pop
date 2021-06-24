@@ -7,7 +7,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-primary);
+  // background: black linear-gradient(midnightblue 0, var(--color-primary) 100%);
+  background: var(--color-primary);
+  min-height: 1000px;
 }
 
 code {
