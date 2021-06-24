@@ -5,7 +5,7 @@
 }
 
 .campaign-card {
-  background: #fff;
+  background-color: #fff;
   border-radius: 2px;
   margin: 1rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -35,51 +35,59 @@
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.header {
-  padding: 0 10px;
+#header-canvas {
+  position: absolute;
+  z-index: -1;
+}
+
+#header {
   display: grid;
-  grid-template-columns: 15% auto 15%;
-  align-items: center;
   height: 80px;
-  white-space: nowrap;
-  .heading {
-    font-size: 3rem;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 900;
-    letter-spacing: 2rem;
-    color: var(--color-red);
-  }
-  .menu-items-container {
-    display: flex;
-    .header-logo {
-      display: inline-block;
-      font-size: 15px;
-      line-height: 40px;
-      height: 40px;
-      text-align: center;
-      vertical-align: bottom;
+  .header-items {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 15% auto 15%;
+    white-space: nowrap;
+    .heading {
+      font-size: 3rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      letter-spacing: 2rem;
+      color: var(--color-red);
     }
-    .menu-item {
-      background-color: white;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      text-decoration: none;
-      color: rgb(28, 100, 76);
-      i {
+    .menu-items-container {
+      display: flex;
+      margin-left: 20px;
+      .header-logo {
         display: inline-block;
         font-size: 15px;
         line-height: 40px;
-        width: 40px;
         height: 40px;
         text-align: center;
         vertical-align: bottom;
       }
+      .menu-item {
+        background-color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-decoration: none;
+        color: rgb(28, 100, 76);
+        i {
+          display: inline-block;
+          font-size: 15px;
+          line-height: 40px;
+          width: 40px;
+          height: 40px;
+          text-align: center;
+          vertical-align: bottom;
+        }
+      }
     }
-  }
-  .signout-button-container {
-    width: 100px;
-    margin-left: 25px;
+    .signout-button-container {
+      width: 100px;
+      margin-left: 25px;
+    }
   }
 }
 
@@ -233,4 +241,9 @@
 
 .campaigns-container {
   display: flex;
+}
+
+.page {
+  margin: auto;
+  width: 80%;
 }
