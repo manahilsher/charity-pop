@@ -245,5 +245,14 @@
 
 .page {
   margin: auto;
-  width: 80%;
+  width: 70%;
+}
+
+.balloon-bundle {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.balloon {
+  margin: 20px;
 }

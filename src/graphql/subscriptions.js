@@ -16,6 +16,7 @@ export const onCreateCampaign = /* GraphQL */ `
           id
           active
           totalRaised
+          balloonsPerRound
           totalPerRound
           roundsCompleted
           campaignID
@@ -44,6 +45,7 @@ export const onUpdateCampaign = /* GraphQL */ `
           id
           active
           totalRaised
+          balloonsPerRound
           totalPerRound
           roundsCompleted
           campaignID
@@ -72,6 +74,7 @@ export const onDeleteCampaign = /* GraphQL */ `
           id
           active
           totalRaised
+          balloonsPerRound
           totalPerRound
           roundsCompleted
           campaignID
@@ -91,6 +94,7 @@ export const onCreateBalloonBundle = /* GraphQL */ `
       id
       active
       totalRaised
+      balloonsPerRound
       totalPerRound
       roundsCompleted
       campaignID
@@ -134,6 +138,7 @@ export const onUpdateBalloonBundle = /* GraphQL */ `
       id
       active
       totalRaised
+      balloonsPerRound
       totalPerRound
       roundsCompleted
       campaignID
@@ -177,6 +182,7 @@ export const onDeleteBalloonBundle = /* GraphQL */ `
       id
       active
       totalRaised
+      balloonsPerRound
       totalPerRound
       roundsCompleted
       campaignID
@@ -229,6 +235,7 @@ export const onCreateBalloon = /* GraphQL */ `
         id
         active
         totalRaised
+        balloonsPerRound
         totalPerRound
         roundsCompleted
         campaignID
@@ -269,6 +276,7 @@ export const onUpdateBalloon = /* GraphQL */ `
         id
         active
         totalRaised
+        balloonsPerRound
         totalPerRound
         roundsCompleted
         campaignID
@@ -309,6 +317,7 @@ export const onDeleteBalloon = /* GraphQL */ `
         id
         active
         totalRaised
+        balloonsPerRound
         totalPerRound
         roundsCompleted
         campaignID
