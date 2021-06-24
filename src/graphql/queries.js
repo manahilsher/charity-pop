@@ -16,6 +16,7 @@ export const getCampaign = /* GraphQL */ `
           id
           active
           totalRaised
+          balloonsPerRound
           totalPerRound
           roundsCompleted
           campaignID
@@ -60,6 +61,7 @@ export const getBalloonBundle = /* GraphQL */ `
       id
       active
       totalRaised
+      balloonsPerRound
       totalPerRound
       roundsCompleted
       campaignID
@@ -108,6 +110,7 @@ export const listBalloonBundles = /* GraphQL */ `
         id
         active
         totalRaised
+        balloonsPerRound
         totalPerRound
         roundsCompleted
         campaignID
@@ -147,6 +150,7 @@ export const getBalloon = /* GraphQL */ `
         id
         active
         totalRaised
+        balloonsPerRound
         totalPerRound
         roundsCompleted
         campaignID
@@ -192,6 +196,7 @@ export const listBalloons = /* GraphQL */ `
           id
           active
           totalRaised
+          balloonsPerRound
           totalPerRound
           roundsCompleted
           campaignID

@@ -9,6 +9,18 @@ import {
 } from '../store/actions';
 import { Link } from 'react-router-dom';
 
+const colors = [
+  'red',
+  'midnightblue',
+  'gold',
+  'limegreen',
+  'purple',
+  'darkorange',
+  'aqua',
+  'deeppink',
+  'slategrey'
+];
+
 class CampaignCreate extends React.Component {
   state = {
     user: null,
@@ -21,11 +33,12 @@ class CampaignCreate extends React.Component {
       goal: 10
     },
     balloonBundle: {
-      minimum: 1,
-      maximum: 10,
+      min: 1,
+      max: 10,
       interval: 1,
       campaignID: ''
-    }
+    },
+    bbCount: 1
   };
 
   async componentDidMount() {
@@ -68,43 +81,65 @@ class CampaignCreate extends React.Component {
   };
 
   handleCampaignChange = event => {
+    const { name, type, value } = event.target;
     this.setState({
       campaign: {
         ...this.state.campaign,
-        [event.target.name]: event.target.value
+        [name]: type === 'number' ? parseInt(value) : value
       }
     });
   };
 
   handleBalloonBundleChange = event => {
+    const { name, type, value } = event.target;
     this.setState({
       balloonBundle: {
         ...this.state.balloonBundle,
-        [event.target.name]: event.target.value
+        [name]: type === 'number' ? parseInt(value) : value
       }
     });
   };
 
   createBalloonBundle = async () => {
-    const { min, max, i } = this.state.balloonBundle;
-    // min is 1
-    // max is 10
-    // i is 2
-    // 1, 3, 5, 7, 9
-    // 1 + 2(n-1)
-    // how much is n
+    let bbID = this.state.balloonBundle.campaignID + '-' + this.state.bbCount;
+    const { min, max, interval } = this.state.balloonBundle;
     let totalPerRound = 0;
-    for (let x = min; x <= max; x += i) {
-      totalPerRound += x;
+    let balloonsPerRound = 0;
+    let balloons = [];
+
+    for (let i = min; i <= max; i += interval) {
+      console.log(i);
+      totalPerRound += i;
+      balloonsPerRound++;
+      balloons.push(this.createBalloon(i, bbID));
     }
-    console.log(totalPerRound);
-    await this.props.createBalloonBundleThunk({
+
+    const bb = {
+      id: bbID,
       active: true,
       totalRaised: 0,
+      balloonsPerRound,
       totalPerRound,
       roundsCompleted: 0,
       campaignID: this.state.balloonBundle.campaignID
-    });
+    };
+
+    await this.props.createBalloonBundleThunk(bb, balloons);
+
+    this.setState({ bbCount: this.state.bbCount + 1 });
+  };
+
+  createBalloon = (value, bbID) => {
+    const balloon = {
+      value,
+      currency: 'USD',
+      color: colors[Math.floor(Math.random() * colors.length)],
+      popStatus: 0,
+      position: Math.random(),
+      size: Math.random(),
+      balloonBundleID: bbID
+    };
+    return balloon;
   };
 
   render() {
@@ -173,9 +208,9 @@ class CampaignCreate extends React.Component {
               <span>Minimum: </span>
               <input
                 type='number'
-                id='minimum'
-                name='minimum'
-                value={this.state.balloonBundle.minimum}
+                id='min'
+                name='min'
+                value={this.state.balloonBundle.min}
                 onChange={this.handleBalloonBundleChange}
                 min='1'
               ></input>
@@ -184,9 +219,9 @@ class CampaignCreate extends React.Component {
               <span>Maximum: </span>
               <input
                 type='number'
-                id='maximum'
-                name='maximum'
-                value={this.state.balloonBundle.maximum}
+                id='max'
+                name='max'
+                value={this.state.balloonBundle.max}
                 onChange={this.handleBalloonBundleChange}
                 min='10'
               ></input>
@@ -201,7 +236,7 @@ class CampaignCreate extends React.Component {
                 onChange={this.handleBalloonBundleChange}
                 min='1'
                 max='100'
-              ></input>
+              />
             </div>
             <div>
               <span>Campaign ID: </span>

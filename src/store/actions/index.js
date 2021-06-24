@@ -121,17 +121,32 @@ export const deleteCampaignThunk = id => () => {
 
 /* BALLOONBUNDLES */
 
-export const createBalloonBundleThunk = balloonBundle => async () => {
-  console.log('create balloonBundle');
-  console.log(balloonBundle);
-  try {
-    await API.graphql(
-      graphqlOperation(createBalloonBundle, { input: balloonBundle })
-    );
-  } catch (err) {
-    console.log('error creating balloonBundle:', err);
-  }
-};
+export const createBalloonBundleThunk =
+  (balloonBundle, balloons) => async () => {
+    console.log('create balloonBundle');
+    console.log(balloonBundle);
+    try {
+      await API.graphql(
+        graphqlOperation(createBalloonBundle, { input: balloonBundle })
+      );
+      // try {
+      //   const input = { balloons };
+      //   await API.graphql(graphqlOperation(batchAddBalloons, input));
+      //   console.log('done');
+      // } catch (err) {
+      //   console.log('error ', err);
+      // }
+      balloons.forEach(async b => {
+        try {
+          await API.graphql(graphqlOperation(createBalloon, { input: b }));
+        } catch (err) {
+          console.log('error creating balloon:', err);
+        }
+      });
+    } catch (err) {
+      console.log('error creating balloonBundle:', err);
+    }
+  };
 
 export const fetchBalloonBundleThunk = id => async dispatch => {
   console.log('fetch balloonBundle thunk');

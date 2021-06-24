@@ -33,16 +33,16 @@ class Header extends React.Component {
 
   renderStars = () => {
     const width = window.innerWidth;
-    const height = window.innerHeight / 2;
+    const height = window.innerHeight;
     const canvas = document.querySelector('#header-canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = width;
     canvas.height = height;
     const stars = this.createStars(width, height, 50);
 
-    const grd = ctx.createLinearGradient(0, 0, 0, window.innerHeight / 2);
+    const grd = ctx.createLinearGradient(0, 0, 0, window.innerHeight);
     grd.addColorStop(0, '#10BAE4');
-    grd.addColorStop(1, '#f0f8fa');
+    grd.addColorStop(1, '#cadde2');
     ctx.fillStyle = grd;
 
     ctx.fillRect(0, 0, width, height);
