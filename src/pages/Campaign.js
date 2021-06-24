@@ -6,7 +6,8 @@ import SideMenu from '../components/SideMenu';
 import {
   editCampaignThunk,
   deleteCampaignThunk,
-  fetchCampaignThunk
+  fetchCampaignThunk,
+  fetchBalloonsThunk
 } from '../store/actions';
 
 class Campaign extends React.Component {
@@ -16,6 +17,8 @@ class Campaign extends React.Component {
     console.log(this.props.match.params.id);
     console.log(this.props.campaign);
   }
+
+  renderBalloons = () => {};
 
   render() {
     return (
@@ -39,12 +42,14 @@ class Campaign extends React.Component {
 const mapState = state => {
   console.log(state.campaignsReducer);
   return {
-    campaign: state.campaignsReducer.selectedCampaign
+    campaign: state.campaignsReducer.selectedCampaign,
+    balloons: state.balloonsReducer.balloons
   };
 };
 
 export default connect(mapState, {
   fetchCampaignThunk,
   editCampaignThunk,
-  deleteCampaignThunk
+  deleteCampaignThunk,
+  fetchBalloonsThunk
 })(Campaign);

@@ -39,7 +39,7 @@ class Campaigns extends React.Component {
   render() {
     return (
       <>
-        <div>
+        <div className='page'>
           <CreateCampaignButton />
           <div className='campaigns-container'>
             {this.props.campaigns ? this.renderCampaigns() : null}
