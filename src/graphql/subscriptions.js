@@ -15,10 +15,14 @@ export const onCreateCampaign = /* GraphQL */ `
         items {
           id
           active
+          min
+          max
+          interval
           totalRaised
           balloonsPerRound
           totalPerRound
           roundsCompleted
+          balloonsPopped
           campaignID
           createdAt
           updatedAt
@@ -44,10 +48,14 @@ export const onUpdateCampaign = /* GraphQL */ `
         items {
           id
           active
+          min
+          max
+          interval
           totalRaised
           balloonsPerRound
           totalPerRound
           roundsCompleted
+          balloonsPopped
           campaignID
           createdAt
           updatedAt
@@ -73,10 +81,14 @@ export const onDeleteCampaign = /* GraphQL */ `
         items {
           id
           active
+          min
+          max
+          interval
           totalRaised
           balloonsPerRound
           totalPerRound
           roundsCompleted
+          balloonsPopped
           campaignID
           createdAt
           updatedAt
@@ -93,10 +105,14 @@ export const onCreateBalloonBundle = /* GraphQL */ `
     onCreateBalloonBundle {
       id
       active
+      min
+      max
+      interval
       totalRaised
       balloonsPerRound
       totalPerRound
       roundsCompleted
+      balloonsPopped
       campaignID
       campaign {
         id
@@ -137,10 +153,14 @@ export const onUpdateBalloonBundle = /* GraphQL */ `
     onUpdateBalloonBundle {
       id
       active
+      min
+      max
+      interval
       totalRaised
       balloonsPerRound
       totalPerRound
       roundsCompleted
+      balloonsPopped
       campaignID
       campaign {
         id
@@ -181,10 +201,14 @@ export const onDeleteBalloonBundle = /* GraphQL */ `
     onDeleteBalloonBundle {
       id
       active
+      min
+      max
+      interval
       totalRaised
       balloonsPerRound
       totalPerRound
       roundsCompleted
+      balloonsPopped
       campaignID
       campaign {
         id
@@ -234,10 +258,14 @@ export const onCreateBalloon = /* GraphQL */ `
       balloonBundle {
         id
         active
+        min
+        max
+        interval
         totalRaised
         balloonsPerRound
         totalPerRound
         roundsCompleted
+        balloonsPopped
         campaignID
         campaign {
           id
@@ -275,10 +303,14 @@ export const onUpdateBalloon = /* GraphQL */ `
       balloonBundle {
         id
         active
+        min
+        max
+        interval
         totalRaised
         balloonsPerRound
         totalPerRound
         roundsCompleted
+        balloonsPopped
         campaignID
         campaign {
           id
@@ -316,10 +348,14 @@ export const onDeleteBalloon = /* GraphQL */ `
       balloonBundle {
         id
         active
+        min
+        max
+        interval
         totalRaised
         balloonsPerRound
         totalPerRound
         roundsCompleted
+        balloonsPopped
         campaignID
         campaign {
           id
