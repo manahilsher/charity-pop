@@ -117,8 +117,12 @@ class CampaignCreate extends React.Component {
     const bb = {
       id: bbID,
       active: true,
+      min,
+      max,
+      interval,
       totalRaised: 0,
       balloonsPerRound,
+      balloonsPopped: 0,
       totalPerRound,
       roundsCompleted: 0,
       campaignID: this.state.balloonBundle.campaignID
