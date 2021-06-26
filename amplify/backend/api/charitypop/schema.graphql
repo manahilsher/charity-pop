@@ -13,10 +13,14 @@ type Campaign @model {
 type BalloonBundle @model @key(name: "byCampaign", fields: ["campaignID"]) {
   id: ID!
   active: Boolean!
+  min: Int!
+  max: Int!
+  interval: Int!
   totalRaised: Int!
   balloonsPerRound: Int!
   totalPerRound: Int!
   roundsCompleted: Int!
+  balloonsPopped: Int!
   campaignID: ID!
   campaign: Campaign @connection(fields: ["campaignID"])
   balloons: [Balloon] @connection(keyName: "byBalloonBundle", fields: ["id"])

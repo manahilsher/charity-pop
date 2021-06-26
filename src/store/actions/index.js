@@ -137,11 +137,12 @@ export const createBalloonBundleThunk =
       //   console.log('error ', err);
       // }
       balloons.forEach(async b => {
-        try {
-          await API.graphql(graphqlOperation(createBalloon, { input: b }));
-        } catch (err) {
-          console.log('error creating balloon:', err);
-        }
+        console.log(b);
+        // try {
+        //   await API.graphql(graphqlOperation(createBalloon, { input: b }));
+        // } catch (err) {
+        //   console.log('error creating balloon:', err);
+        // }
       });
     } catch (err) {
       console.log('error creating balloonBundle:', err);
