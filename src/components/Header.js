@@ -77,7 +77,7 @@ class Header extends React.Component {
                   />
                 </div>
               </Link>
-              <Link to='/create-campaign' style={{ marginLeft: '15px' }}>
+              <Link to='/build-campaign' style={{ marginLeft: '15px' }}>
                 <div className='menu-item'>
                   <i className='fas fa-plus'></i>
                 </div>

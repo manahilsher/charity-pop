@@ -2,6 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import { Auth } from 'aws-amplify';
+import Slider from '@material-ui/core/Slider';
 
 import {
   createCampaignThunk,
@@ -21,7 +22,7 @@ const colors = [
   'slategrey'
 ];
 
-class CampaignCreate extends React.Component {
+class CampaignBuilder extends React.Component {
   state = {
     user: null,
     authFailed: false,
@@ -38,7 +39,8 @@ class CampaignCreate extends React.Component {
       interval: 1,
       campaignID: ''
     },
-    bbCount: 1
+    bbCount: 1,
+    slider: [10, 100]
   };
 
   async componentDidMount() {
@@ -100,9 +102,19 @@ class CampaignCreate extends React.Component {
     });
   };
 
+  handleSliderChange = (e, v) => {
+    this.setState({ slider: v });
+  };
+
+  valuetext = value => {
+    return `${value}°C`;
+  };
+
   createBalloonBundle = async () => {
+    const min = this.state.slider[0];
+    const max = this.state.slider[1];
     let bbID = this.state.balloonBundle.campaignID + '-' + this.state.bbCount;
-    const { min, max, interval } = this.state.balloonBundle;
+    const { interval } = this.state.balloonBundle;
     let totalPerRound = 0;
     let balloonsPerRound = 0;
     let balloons = [];
@@ -150,13 +162,14 @@ class CampaignCreate extends React.Component {
     const f = this.state.authFailed;
     return (
       <>
-        <div className='ui container'>
+        <div className='page'>
           {f ? this.renderAuthenticationPopup() : null}
           <div
             style={{ opacity: f ? 0.2 : 1, pointerEvents: f ? 'none' : 'auto' }}
+            className='builder-container'
           >
-            <div>
-              <span>Name: </span>
+            <div className='builder-field'>
+              <div>Name</div>
               <input
                 type='text'
                 id='name'
@@ -165,8 +178,8 @@ class CampaignCreate extends React.Component {
                 onChange={this.handleCampaignChange}
               ></input>
             </div>
-            <div>
-              <span>Url: </span>
+            <div className='builder-field'>
+              <div>ID</div>
               <input
                 type='text'
                 id='id'
@@ -175,28 +188,8 @@ class CampaignCreate extends React.Component {
                 onChange={this.handleCampaignChange}
               ></input>
             </div>
-            <div>
-              <span>Blurb: </span>
-              <input
-                type='text'
-                id='blurb'
-                name='blurb'
-                value={this.state.campaign.blurb}
-                onChange={this.handleCampaignChange}
-              ></input>
-            </div>
-            <div>
-              <span>Description: </span>
-              <input
-                type='text'
-                id='description'
-                name='description'
-                value={this.state.campaign.description}
-                onChange={this.handleCampaignChange}
-              ></input>
-            </div>
-            <div>
-              <span>Goal: </span>
+            <div className='builder-field'>
+              <div>Goal</div>
               <input
                 type='number'
                 id='goal'
@@ -206,32 +199,37 @@ class CampaignCreate extends React.Component {
                 min='10'
               ></input>
             </div>
-            <button onClick={this.createCampaign}>Create</button>
+            <div className='builder-field'>
+              <div>Blurb</div>
+              <input
+                type='text'
+                id='blurb'
+                name='blurb'
+                value={this.state.campaign.blurb}
+                onChange={this.handleCampaignChange}
+              ></input>
+            </div>
+            <div className='builder-field'>
+              <div>Description</div>
+              <textarea
+                id='description'
+                name='description'
+                value={this.state.campaign.description}
+                onChange={this.handleCampaignChange}
+              ></textarea>
+            </div>
             <div>BALLOON BUNDLE</div>
-            <div>
-              <span>Minimum: </span>
-              <input
-                type='number'
-                id='min'
-                name='min'
-                value={this.state.balloonBundle.min}
-                onChange={this.handleBalloonBundleChange}
-                min='1'
-              ></input>
-            </div>
-            <div>
-              <span>Maximum: </span>
-              <input
-                type='number'
-                id='max'
-                name='max'
-                value={this.state.balloonBundle.max}
-                onChange={this.handleBalloonBundleChange}
-                min='10'
-              ></input>
-            </div>
-            <div>
-              <span>Interval: </span>
+            {/* <div className='slider'> */}
+            <div className='bundle-info'>
+              <Slider
+                className='slider'
+                value={this.state.slider}
+                onChange={this.handleSliderChange}
+                valueLabelDisplay='auto'
+                aria-labelledby='range-slider'
+                min={10}
+              />
+              {/* <div>Interval</div> */}
               <input
                 type='number'
                 id='interval'
@@ -242,8 +240,9 @@ class CampaignCreate extends React.Component {
                 max='100'
               />
             </div>
-            <div>
-              <span>Campaign ID: </span>
+            {/* </div> */}
+            <div className='builder-field'>
+              <div>Campaign ID: </div>
               <input
                 type='text'
                 id='campaignID'
@@ -253,6 +252,13 @@ class CampaignCreate extends React.Component {
               ></input>
             </div>
             <button onClick={this.createBalloonBundle}>Create</button>
+
+            <div
+              className='build-campaign-button'
+              onClick={this.createCampaign}
+            >
+              Create Campaign!
+            </div>
           </div>
         </div>
       </>
@@ -261,5 +267,5 @@ class CampaignCreate extends React.Component {
 }
 
 export default connect(null, { createCampaignThunk, createBalloonBundleThunk })(
-  CampaignCreate
+  CampaignBuilder
 );
