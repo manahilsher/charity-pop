@@ -8,7 +8,7 @@ import Campaign from './pages/Campaign';
 import Campaigns from './pages/Campaigns';
 import Profile from './pages/Profile';
 import Header from './components/Header';
-import CampaignCreate from './pages/CampaignCreate';
+import CampaignBuilder from './pages/CampaignBuilder';
 import Login from './pages/Login';
 
 const logger = new Logger('Logger', 'INFO');
@@ -44,9 +44,9 @@ const App = () => {
           <Route path='/' exact component={Campaigns}></Route>
           <Route path='/campaign/:id' exact component={Campaign}></Route>
           <Route
-            path='/create-campaign'
+            path='/build-campaign'
             exact
-            component={CampaignCreate}
+            component={CampaignBuilder}
           ></Route>
           <Route path='/profile' exact component={Profile}></Route>
           <AmplifyAuthenticator>
