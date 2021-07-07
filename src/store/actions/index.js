@@ -50,13 +50,17 @@ export const fetchBalloonThunk = id => dispatch => {
   // dispatch({ type: FETCH_BALLOON, payload: { id } });
 };
 
-export const fetchBalloonsThunk = () => async dispatch => {
+export const fetchBalloonsThunk = bbID => async dispatch => {
   try {
     const balloonData = await API.graphql(graphqlOperation(listBalloons));
-    const balloons = balloonData.data.listBalloons.items;
-    dispatch({ type: FETCH_BALLOONS, payload: balloons });
+    console.log(balloonData);
+    const balloons = balloonData.data.listBalloons.items.filter(
+      b => b.balloonBundleID === bbID
+    );
+    dispatch({ type: FETCH_BALLOONS, payload: { bbID, balloons } });
   } catch (err) {
     console.log('error fetching balloons');
+    console.log(err);
   }
 };
 
@@ -165,12 +169,15 @@ export const fetchBalloonBundleThunk = id => async dispatch => {
   }
 };
 
-export const fetchBalloonBundlesThunk = () => async dispatch => {
+export const fetchBalloonBundlesThunk = campaignID => async dispatch => {
   try {
     const balloonBundleData = await API.graphql(
       graphqlOperation(listBalloonBundles)
     );
-    const balloonBundles = balloonBundleData.data.listBalloonBundles.items;
+    const balloonBundles =
+      balloonBundleData.data.listBalloonBundles.items.filter(
+        bb => bb.campaignID === campaignID
+      );
     dispatch({ type: FETCH_BALLOONBUNDLES, payload: balloonBundles });
   } catch (err) {
     console.log('error fetching balloonBundles');

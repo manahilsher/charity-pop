@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "charitypopc31dcb46_identitypool_c31dcb46",
+    "identityPoolName": "charitypop812513aa_identitypool_812513aa",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "charitc31dcb46",
-    "userPoolName": "charitypopc31dcb46_userpool_c31dcb46",
+    "resourceNameTruncated": "charit812513aa",
+    "userPoolName": "charitypop812513aa_userpool_812513aa",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "charitc31dcb46_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "charit812513aa_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "c31dcb46",
-    "resourceName": "charitypopc31dcb46",
+    "sharedId": "812513aa",
+    "resourceName": "charitypop812513aa",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [

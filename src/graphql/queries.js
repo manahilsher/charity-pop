@@ -96,6 +96,8 @@ export const getBalloonBundle = /* GraphQL */ `
           popStatus
           position
           size
+          poppedBy
+          poppedAt
           balloonBundleID
           createdAt
           updatedAt
@@ -157,6 +159,8 @@ export const getBalloon = /* GraphQL */ `
       popStatus
       position
       size
+      poppedBy
+      poppedAt
       balloonBundleID
       balloonBundle {
         id
@@ -207,6 +211,8 @@ export const listBalloons = /* GraphQL */ `
         popStatus
         position
         size
+        poppedBy
+        poppedAt
         balloonBundleID
         balloonBundle {
           id
