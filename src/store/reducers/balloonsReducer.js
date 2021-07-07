@@ -10,7 +10,11 @@ import {
 export default (state = { balloons: [] }, action) => {
   switch (action.type) {
     case FETCH_BALLOONS:
-      return { ...state, balloons: action.payload };
+      return {
+        ...state,
+        [`${action.payload.bbID}-balloons`]: action.payload.balloons
+      };
+    // return { ...state, balloons: action.payload };
     case FETCH_BALLOON:
       return { ...state, selectedBalloon: action.payload };
     case DELETE_BALLOON:

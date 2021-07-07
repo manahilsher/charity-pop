@@ -149,6 +149,8 @@ export const createBalloonBundle = /* GraphQL */ `
           popStatus
           position
           size
+          poppedBy
+          poppedAt
           balloonBundleID
           createdAt
           updatedAt
@@ -200,6 +202,8 @@ export const updateBalloonBundle = /* GraphQL */ `
           popStatus
           position
           size
+          poppedBy
+          poppedAt
           balloonBundleID
           createdAt
           updatedAt
@@ -251,6 +255,8 @@ export const deleteBalloonBundle = /* GraphQL */ `
           popStatus
           position
           size
+          poppedBy
+          poppedAt
           balloonBundleID
           createdAt
           updatedAt
@@ -275,6 +281,8 @@ export const createBalloon = /* GraphQL */ `
       popStatus
       position
       size
+      poppedBy
+      poppedAt
       balloonBundleID
       balloonBundle {
         id
@@ -323,6 +331,8 @@ export const updateBalloon = /* GraphQL */ `
       popStatus
       position
       size
+      poppedBy
+      poppedAt
       balloonBundleID
       balloonBundle {
         id
@@ -371,6 +381,8 @@ export const deleteBalloon = /* GraphQL */ `
       popStatus
       position
       size
+      poppedBy
+      poppedAt
       balloonBundleID
       balloonBundle {
         id

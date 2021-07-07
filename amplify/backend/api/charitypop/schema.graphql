@@ -34,6 +34,8 @@ type Balloon @model @key(name: "byBalloonBundle", fields: ["balloonBundleID"]) {
   popStatus: Int!
   position: Float!
   size: Float!
+  poppedBy: String
+  poppedAt: AWSDateTime
   balloonBundleID: ID!
   balloonBundle: BalloonBundle @connection(fields: ["balloonBundleID"])
 }

@@ -258,10 +258,15 @@
 }
 
 .builder-container {
-  margin-top: 20px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--color-secondary);
+  width: 600px;
+  margin: 50px auto;
+  padding-top: 20px;
+  color: white;
   .builder-field {
     display: flex;
     flex-direction: column;
@@ -271,7 +276,7 @@
       border: none;
       border-radius: 2px;
       outline: none;
-      padding: 4px;
+      padding: 4px 10px;
       width: 500px;
       min-width: 200px;
       height: 40px;
@@ -281,7 +286,7 @@
       border: none;
       border-radius: 2px;
       outline: none;
-      padding: 4px;
+      padding: 4px 10px;
       width: 500px;
       min-width: 200px;
       height: 200px;
@@ -293,27 +298,34 @@
     min-width: 200px;
     height: 40px;
     line-height: 40px;
-    padding: 4px;
+    padding: 4px 10px;
     border-radius: 4px;
     color: white;
     background-color: var(--color-green);
     font-weight: bold;
   }
   .bundle-info {
+    display: grid;
+    grid-template-columns: 60px 400px 60px;
+    .count {
+      background-color: green;
+    }
     .slider {
-      color: var(--color-secondary);
+      color: var(--color-red);
       width: 380px;
-      min-width: 150px;
+      background-color: pink;
+      margin: auto;
     }
     input {
-      margin-left: 20px;
-      width: 100px;
-      min-width: 40px;
+      // margin-left: 20px;
+      // width: 80px;
+      // min-width: 40px;
       border: none;
       border-radius: 2px;
       outline: none;
       padding: 4px;
       font-size: large;
+      background-color: orange;
     }
   }
 }
