@@ -109,7 +109,16 @@ class Header extends React.Component {
             </div>
           </div>
         </div> */}
-        <div id='header'>
+        <div
+          id='header'
+          style={{
+            backgroundColor: this.props.campaign
+              ? this.props.campaign === undefined
+                ? '#10bae4'
+                : 'transparent'
+              : '#10bae4'
+          }}
+        >
           <div className='menu'>
             <div className='menu-item-container'>
               <Link to='/'>
@@ -140,7 +149,7 @@ class Header extends React.Component {
               {this.props.campaign
                 ? this.props.campaign === undefined
                   ? 'CHARITY POP'
-                  : this.props.campaign.name
+                  : ''
                 : 'CHARITY POP'}
             </div>
           </div>

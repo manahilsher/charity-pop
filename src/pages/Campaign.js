@@ -15,6 +15,8 @@ import {
 
 class Campaign extends React.Component {
   async componentDidMount() {
+    this.renderStars();
+    window.addEventListener('resize', this.resizeCanvas, false);
     await this.props.fetchCampaignThunk(this.props.match.params.id);
     console.log('um');
     console.log(this.props.match.params.id);
@@ -28,6 +30,59 @@ class Campaign extends React.Component {
   async componentWillUnmount() {
     await this.props.unselectCampaignThunk();
   }
+
+  createStars = (width, height, spacing) => {
+    const stars = [];
+
+    for (let x = 0; x < width; x += spacing) {
+      for (let y = 0; y < height; y += spacing) {
+        const star = {
+          x: x + Math.floor(Math.random() * spacing),
+          y: y + Math.floor(Math.random() * spacing),
+          r: Math.random() * 1.5
+        };
+        stars.push(star);
+      }
+    }
+    return stars;
+  };
+
+  fillCircle = (ctx, x, y, r, fillStyle) => {
+    ctx.beginPath();
+    ctx.fillStyle = fillStyle;
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+  };
+
+  renderStars = () => {
+    const width = window.innerWidth - 222;
+    const height = document.body.scrollHeight;
+    const canvas = document.querySelector('#campaign-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = width;
+    canvas.height = height;
+    const stars = this.createStars(width, height, 50);
+
+    const grd = ctx.createLinearGradient(0, 0, 0, document.body.scrollHeight);
+    grd.addColorStop(0, '#10BAE4');
+    grd.addColorStop(1, '#cadde2');
+    ctx.fillStyle = grd;
+
+    ctx.fillRect(0, 0, width, height);
+    stars.forEach(star => {
+      const x = star.x;
+      const y = star.y;
+      const r = star.r;
+      this.fillCircle(ctx, x, y, r, '#fff8b8');
+    });
+  };
+
+  resizeCanvas = () => {
+    const canvas = document.querySelector('#campaign-canvas');
+    canvas.width = window.innerWidth - 222;
+    canvas.height = document.body.scrollHeight;
+    this.renderStars();
+  };
 
   renderBalloonBundles = () => {
     let bbs = this.props.balloonBundlesWithBalloons.map(bb => {
@@ -71,17 +126,16 @@ class Campaign extends React.Component {
         <div>
           <Feed />
           <SideMenu />
-          <div className='campaign-container'>
-            <div>
-              {this.props.campaign ? (
-                <div>
-                  <div>{this.props.campaign.name}</div>
-                </div>
-              ) : null}
+          <div className='campaign-page'>
+            <div className='campaign-container'>
+              <div className='title'>
+                {this.props.campaign ? this.props.campaign.name : ''}
+              </div>
+              <>
+                {this.props.balloonBundles ? this.renderBalloonBundles() : null}
+              </>
             </div>
-            <>
-              {this.props.balloonBundles ? this.renderBalloonBundles() : null}
-            </>
+            <canvas id='campaign-canvas'></canvas>
           </div>
         </div>
       </>
