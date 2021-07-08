@@ -119,7 +119,6 @@ class CampaignBuilder extends React.Component {
       roundsCompleted: 0,
       campaignID: this.state.campaign.id
     };
-    console.log(balloons);
     await this.props.createBalloonBundleThunk(bb, balloons);
   };
 
