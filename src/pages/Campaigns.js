@@ -7,7 +7,6 @@ import {
   fetchCampaignsThunk
 } from '../store/actions';
 import CampaignCard from '../components/CampaignCard';
-import CreateCampaignButton from '../components/CreateCampaignButton';
 
 class Campaigns extends React.Component {
   async componentDidMount() {
@@ -40,7 +39,6 @@ class Campaigns extends React.Component {
     return (
       <>
         <div className='page'>
-          <CreateCampaignButton />
           <div className='campaigns-container'>
             {this.props.campaigns ? this.renderCampaigns() : null}
           </div>

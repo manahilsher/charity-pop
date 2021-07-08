@@ -3,7 +3,8 @@ import {
   CREATE_CAMPAIGN,
   FETCH_CAMPAIGN,
   UPDATE_CAMPAIGN,
-  DELETE_CAMPAIGN
+  DELETE_CAMPAIGN,
+  UNSELECT_CAMPAIGN
 } from '../actions/types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -14,6 +15,10 @@ export default (state = { campaigns: [] }, action) => {
     case FETCH_CAMPAIGN:
       console.log(action.payload);
       return { ...state, selectedCampaign: action.payload };
+    case UNSELECT_CAMPAIGN:
+      let newStateWithUnselectedCampaign = { ...state };
+      delete newStateWithUnselectedCampaign.selectedCampaign;
+      return newStateWithUnselectedCampaign;
     case DELETE_CAMPAIGN:
       let newStateWithDeletedCampaign = { ...state };
       newStateWithDeletedCampaign.campaigns = state.campaigns.filter(

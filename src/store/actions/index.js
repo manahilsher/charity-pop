@@ -5,6 +5,7 @@ import {
   // UPDATE_BALLOON,
   // DELETE_BALLOON
   FETCH_CAMPAIGNS,
+  UNSELECT_CAMPAIGN,
   // CREATE_CAMPAIGN,
   FETCH_CAMPAIGN,
   // UPDATE_CAMPAIGN,
@@ -100,6 +101,10 @@ export const fetchCampaignThunk = id => async dispatch => {
     console.log('error fetching campaign');
     console.log(err);
   }
+};
+
+export const unselectCampaignThunk = () => dispatch => {
+  dispatch({ type: UNSELECT_CAMPAIGN });
 };
 
 export const fetchCampaignsThunk = () => async dispatch => {
