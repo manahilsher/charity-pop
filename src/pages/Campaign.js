@@ -9,7 +9,8 @@ import {
   deleteCampaignThunk,
   fetchCampaignThunk,
   fetchBalloonsThunk,
-  fetchBalloonBundlesThunk
+  fetchBalloonBundlesThunk,
+  unselectCampaignThunk
 } from '../store/actions';
 
 class Campaign extends React.Component {
@@ -24,11 +25,31 @@ class Campaign extends React.Component {
     });
   }
 
+  async componentWillUnmount() {
+    await this.props.unselectCampaignThunk();
+  }
+
   renderBalloonBundles = () => {
     let bbs = this.props.balloonBundlesWithBalloons.map(bb => {
       return (
         <div key={bb.id}>
-          <h5>{bb.id}</h5>
+          <div className='balloon-bundle-title'>{bb.id}</div>
+          <div className='balloon-bundle-heading'>
+            <div>Round {bb.roundsCompleted + 1}</div>
+            <div>
+              ${bb.min} to ${bb.max}
+            </div>
+            <div className='third-column'>
+              <div className='fraction-container'>
+                <div>$</div>
+                <div className='fraction'>
+                  <div>{bb.totalRaised}</div>
+                  <div className='denominator'>{bb.totalPerRound}</div>
+                </div>
+                <div>raised</div>
+              </div>
+            </div>
+          </div>
           <div className='balloon-bundle'>{this.renderBalloons(bb.id)}</div>
         </div>
       );
@@ -50,7 +71,7 @@ class Campaign extends React.Component {
         <div>
           <Feed />
           <SideMenu />
-          <div className='page'>
+          <div className='campaign-container'>
             <div>
               {this.props.campaign ? (
                 <div>
@@ -92,5 +113,6 @@ export default connect(mapState, {
   editCampaignThunk,
   deleteCampaignThunk,
   fetchBalloonsThunk,
-  fetchBalloonBundlesThunk
+  fetchBalloonBundlesThunk,
+  unselectCampaignThunk
 })(Campaign);
