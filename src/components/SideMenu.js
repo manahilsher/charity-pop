@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
+
+import { FaHome, FaCoins, FaVideo, FaUser, FaInfo } from 'react-icons/fa';
 
 class SideMenu extends React.Component {
   onMouseEnter = () => {
@@ -35,19 +38,34 @@ class SideMenu extends React.Component {
         </div>
         <div className='items-container'>
           <div className='item'>
-            <i className='fas fa-tree'></i>
+            <FaHome size={20} />
+          </div>
+          <div className='content'>
+            {this.props.campaign ? this.props.campaign.description : ''}
           </div>
           <div className='item'>
-            <i className='fas fa-tree'></i>
+            <FaVideo size={20} />
+          </div>
+          <div className='content'>
+            {this.props.campaign ? this.props.campaign.description : ''}
           </div>
           <div className='item'>
-            <i className='fas fa-tree'></i>
+            <FaCoins size={20} />
+          </div>
+          <div className='content'>
+            {this.props.campaign ? this.props.campaign.description : ''}
           </div>
           <div className='item'>
-            <i className='fas fa-tree'></i>
+            <FaUser size={20} />
+          </div>
+          <div className='content'>
+            {this.props.campaign ? this.props.campaign.description : ''}
           </div>
           <div className='item'>
-            <i className='fas fa-tree'></i>
+            <FaInfo size={20} />
+          </div>
+          <div className='content'>
+            {this.props.campaign ? this.props.campaign.description : ''}
           </div>
         </div>
       </div>
@@ -55,4 +73,13 @@ class SideMenu extends React.Component {
   }
 }
 
-export default SideMenu;
+const mapState = state => {
+  console.log(state.campaignsReducer);
+  if (state.campaignsReducer.selectedCampaign)
+    return {
+      campaign: state.campaignsReducer.selectedCampaign
+    };
+  else return {};
+};
+
+export default connect(mapState)(SideMenu);

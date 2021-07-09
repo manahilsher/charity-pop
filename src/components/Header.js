@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 // import { AmplifySignOut } from '@aws-amplify/ui-react';
+import { FaPlus, FaSignOutAlt } from 'react-icons/fa';
 
 // import { fetchCampaignThunk } from '../store/actions';
 
@@ -114,9 +115,9 @@ class Header extends React.Component {
           style={{
             backgroundColor: this.props.campaign
               ? this.props.campaign === undefined
-                ? '#10bae4'
+                ? '#7cdaf1'
                 : 'transparent'
-              : '#10bae4'
+              : '#7cdaf1'
           }}
         >
           <div className='menu'>
@@ -134,13 +135,13 @@ class Header extends React.Component {
             <div className='menu-item-container'>
               <Link to='/build-campaign'>
                 <div className='menu-item'>
-                  <i className='fas fa-plus fa-lg'></i>
+                  <FaPlus size={25} />
                 </div>
               </Link>
             </div>
             <div className='menu-item-container'>
               <div className='menu-item' onClick={this.signOut}>
-                <i className='fas fa-sign-out-alt fa-lg'></i>
+                <FaSignOutAlt size={25} />
               </div>
             </div>
           </div>

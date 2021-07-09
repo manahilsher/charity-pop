@@ -64,7 +64,7 @@ class Campaign extends React.Component {
     const stars = this.createStars(width, height, 50);
 
     const grd = ctx.createLinearGradient(0, 0, 0, document.body.scrollHeight);
-    grd.addColorStop(0, '#10BAE4');
+    grd.addColorStop(0, '#10bae4');
     grd.addColorStop(1, '#cadde2');
     ctx.fillStyle = grd;
 
