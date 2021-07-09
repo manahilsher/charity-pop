@@ -34,10 +34,10 @@ class CampaignBuilder extends React.Component {
       goal: 10
     },
     sliders: [
-      { active: true, value: [10, 100], interval: 1 },
-      { active: false, value: [10, 100], interval: 1 },
-      { active: false, value: [10, 100], interval: 1 },
-      { active: false, value: [10, 100], interval: 1 }
+      { active: true, value: [10, 100], interval: 1, name: 'Group 1' },
+      { active: false, value: [10, 100], interval: 1, name: 'Group 2' },
+      { active: false, value: [10, 100], interval: 1, name: 'Group 3' },
+      { active: false, value: [10, 100], interval: 1, name: 'Group 4' }
     ]
   };
 
@@ -99,16 +99,18 @@ class CampaignBuilder extends React.Component {
     let balloonsPerRound = 0;
     let balloons = [];
 
-    for (let i = min; i <= max; i += s.interval) {
-      console.log(i);
-      totalPerRound += i;
+    for (let j = min; j <= max; j += s.interval) {
+      console.log(j);
+      totalPerRound += j;
       balloonsPerRound++;
-      balloons.push(this.createBalloon(i, bbID));
+      balloons.push(this.createBalloon(j, bbID));
     }
 
     const bb = {
       id: bbID,
       active: true,
+      name: s.name,
+      order: i,
       min,
       max,
       interval: s.interval,

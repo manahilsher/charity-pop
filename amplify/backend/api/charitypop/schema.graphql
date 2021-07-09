@@ -12,6 +12,8 @@ type Campaign @model {
 
 type BalloonBundle @model @key(name: "byCampaign", fields: ["campaignID"]) {
   id: ID!
+  name: String!
+  order: Int!
   active: Boolean!
   min: Int!
   max: Int!

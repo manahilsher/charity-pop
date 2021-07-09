@@ -14,6 +14,8 @@ export const onCreateCampaign = /* GraphQL */ `
       balloonBundles {
         items {
           id
+          name
+          order
           active
           min
           max
@@ -47,6 +49,8 @@ export const onUpdateCampaign = /* GraphQL */ `
       balloonBundles {
         items {
           id
+          name
+          order
           active
           min
           max
@@ -80,6 +84,8 @@ export const onDeleteCampaign = /* GraphQL */ `
       balloonBundles {
         items {
           id
+          name
+          order
           active
           min
           max
@@ -104,6 +110,8 @@ export const onCreateBalloonBundle = /* GraphQL */ `
   subscription OnCreateBalloonBundle {
     onCreateBalloonBundle {
       id
+      name
+      order
       active
       min
       max
@@ -154,6 +162,8 @@ export const onUpdateBalloonBundle = /* GraphQL */ `
   subscription OnUpdateBalloonBundle {
     onUpdateBalloonBundle {
       id
+      name
+      order
       active
       min
       max
@@ -204,6 +214,8 @@ export const onDeleteBalloonBundle = /* GraphQL */ `
   subscription OnDeleteBalloonBundle {
     onDeleteBalloonBundle {
       id
+      name
+      order
       active
       min
       max
@@ -265,6 +277,8 @@ export const onCreateBalloon = /* GraphQL */ `
       balloonBundleID
       balloonBundle {
         id
+        name
+        order
         active
         min
         max
@@ -312,6 +326,8 @@ export const onUpdateBalloon = /* GraphQL */ `
       balloonBundleID
       balloonBundle {
         id
+        name
+        order
         active
         min
         max
@@ -359,6 +375,8 @@ export const onDeleteBalloon = /* GraphQL */ `
       balloonBundleID
       balloonBundle {
         id
+        name
+        order
         active
         min
         max

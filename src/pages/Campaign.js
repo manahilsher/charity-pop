@@ -1,6 +1,9 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
+
+import { Link } from 'react-router-dom';
+
 import Feed from '../components/Feed';
 import SideMenu from '../components/SideMenu';
 import Balloon from '../components/Balloon';
@@ -15,7 +18,7 @@ import {
 
 class Campaign extends React.Component {
   async componentDidMount() {
-    this.renderStars();
+    // this.renderStars();
     window.addEventListener('resize', this.resizeCanvas, false);
     await this.props.fetchCampaignThunk(this.props.match.params.id);
     console.log('um');
@@ -31,64 +34,64 @@ class Campaign extends React.Component {
     await this.props.unselectCampaignThunk();
   }
 
-  createStars = (width, height, spacing) => {
-    const stars = [];
+  // createStars = (width, height, spacing) => {
+  //   const stars = [];
 
-    for (let x = 0; x < width; x += spacing) {
-      for (let y = 0; y < height; y += spacing) {
-        const star = {
-          x: x + Math.floor(Math.random() * spacing),
-          y: y + Math.floor(Math.random() * spacing),
-          r: Math.random() * 1.5
-        };
-        stars.push(star);
-      }
-    }
-    return stars;
-  };
+  //   for (let x = 0; x < width; x += spacing) {
+  //     for (let y = 0; y < height; y += spacing) {
+  //       const star = {
+  //         x: x + Math.floor(Math.random() * spacing),
+  //         y: y + Math.floor(Math.random() * spacing),
+  //         r: Math.random() * 1.5
+  //       };
+  //       stars.push(star);
+  //     }
+  //   }
+  //   return stars;
+  // };
 
-  fillCircle = (ctx, x, y, r, fillStyle) => {
-    ctx.beginPath();
-    ctx.fillStyle = fillStyle;
-    ctx.arc(x, y, r, 0, Math.PI * 2);
-    ctx.fill();
-  };
+  // fillCircle = (ctx, x, y, r, fillStyle) => {
+  //   ctx.beginPath();
+  //   ctx.fillStyle = fillStyle;
+  //   ctx.arc(x, y, r, 0, Math.PI * 2);
+  //   ctx.fill();
+  // };
 
-  renderStars = () => {
-    const width = window.innerWidth - 222;
-    const height = document.body.scrollHeight;
-    const canvas = document.querySelector('#campaign-canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = width;
-    canvas.height = height;
-    const stars = this.createStars(width, height, 50);
+  // renderStars = () => {
+  //   const width = window.innerWidth - 222;
+  //   const height = document.body.scrollHeight;
+  //   const canvas = document.querySelector('#campaign-canvas');
+  //   const ctx = canvas.getContext('2d');
+  //   canvas.width = width;
+  //   canvas.height = height;
+  //   const stars = this.createStars(width, height, 50);
 
-    const grd = ctx.createLinearGradient(0, 0, 0, document.body.scrollHeight);
-    grd.addColorStop(0, '#10bae4');
-    grd.addColorStop(1, '#cadde2');
-    ctx.fillStyle = grd;
+  //   const grd = ctx.createLinearGradient(0, 0, 0, document.body.scrollHeight);
+  //   grd.addColorStop(0, '#7cdaf1');
+  //   grd.addColorStop(1, '#cadde2');
+  //   ctx.fillStyle = grd;
 
-    ctx.fillRect(0, 0, width, height);
-    stars.forEach(star => {
-      const x = star.x;
-      const y = star.y;
-      const r = star.r;
-      this.fillCircle(ctx, x, y, r, '#fff8b8');
-    });
-  };
+  //   ctx.fillRect(0, 0, width, height);
+  //   stars.forEach(star => {
+  //     const x = star.x;
+  //     const y = star.y;
+  //     const r = star.r;
+  //     this.fillCircle(ctx, x, y, r, '#fff8b8');
+  //   });
+  // };
 
-  resizeCanvas = () => {
-    const canvas = document.querySelector('#campaign-canvas');
-    canvas.width = window.innerWidth - 222;
-    canvas.height = document.body.scrollHeight;
-    this.renderStars();
-  };
+  // resizeCanvas = () => {
+  //   const canvas = document.querySelector('#campaign-canvas');
+  //   canvas.width = window.innerWidth - 222;
+  //   canvas.height = document.body.scrollHeight;
+  //   this.renderStars();
+  // };
 
   renderBalloonBundles = () => {
     let bbs = this.props.balloonBundlesWithBalloons.map(bb => {
       return (
         <div key={bb.id}>
-          <div className='balloon-bundle-title'>{bb.id}</div>
+          <div className='balloon-bundle-title'>{bb.name}</div>
           <div className='balloon-bundle-heading'>
             <div>Round {bb.roundsCompleted + 1}</div>
             <div>
@@ -127,6 +130,17 @@ class Campaign extends React.Component {
           <Feed />
           <SideMenu />
           <div className='campaign-page'>
+            <div className='home-button'>
+              <Link to='/'>
+                <div className='logo'>
+                  <img
+                    src='/Charity_Pop_Words_Stroke_Logo.png'
+                    alt='Charity_Pop_Words_Stroke_Logo'
+                    className='header-logo'
+                  />
+                </div>
+              </Link>
+            </div>
             <div className='campaign-container'>
               <div className='title'>
                 {this.props.campaign ? this.props.campaign.name : ''}
@@ -135,7 +149,7 @@ class Campaign extends React.Component {
                 {this.props.balloonBundles ? this.renderBalloonBundles() : null}
               </>
             </div>
-            <canvas id='campaign-canvas'></canvas>
+            {/* <canvas id='campaign-canvas'></canvas> */}
           </div>
         </div>
       </>

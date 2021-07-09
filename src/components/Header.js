@@ -75,86 +75,52 @@ class Header extends React.Component {
     }
   };
 
-  render() {
-    console.log(this.props.campaign);
+  header1 = () => {
     return (
-      <>
-        {/* <div id='header'> */}
-        {/* <canvas id='header-canvas'></canvas> */}
-        {/* <div className='header-items'>
-            <div className='menu-items-container'>
-              <Link to='/'>
-                <div>
-                  <img
-                    src='/red-balloon.png'
-                    alt='red-balloon-logo'
-                    className='header-logo'
-                  />
-                </div>
-              </Link>
-              <Link to='/build-campaign' style={{ marginLeft: '15px' }}>
-                <div className='menu-item'>
-                  <i className='fas fa-plus'></i>
-                </div>
-              </Link>
-            </div>
-            <div className='heading'>
-              {this.props.campaign
-                ? this.props.campaign === undefined
-                  ? 'CHARITY POP'
-                  : this.props.campaign.name
-                : 'CHARITY POP'}
-            </div>
-            <div className='signout-button-container'>
-              <AmplifySignOut />
-            </div>
-          </div>
-        </div> */}
-        <div
-          id='header'
-          style={{
-            backgroundColor: this.props.campaign
-              ? this.props.campaign === undefined
-                ? '#7cdaf1'
-                : 'transparent'
-              : '#7cdaf1'
-          }}
-        >
-          <div className='menu'>
-            <div className='menu-item-container'>
-              <Link to='/'>
-                <div className='logo'>
-                  <img
-                    src='/red-balloon.png'
-                    alt='red-balloon-logo'
-                    className='header-logo'
-                  />
-                </div>
-              </Link>
-            </div>
-            <div className='menu-item-container'>
-              <Link to='/build-campaign'>
-                <div className='menu-item'>
-                  <FaPlus size={25} />
-                </div>
-              </Link>
-            </div>
-            <div className='menu-item-container'>
-              <div className='menu-item' onClick={this.signOut}>
-                <FaSignOutAlt size={25} />
+      <div id='header'>
+        <div className='menu'>
+          <div className='menu-item-container'>
+            <Link to='/'>
+              <div className='logo'>
+                <img
+                  src='/red-balloon.png'
+                  alt='red-balloon-logo'
+                  className='header-logo'
+                />
               </div>
-            </div>
+            </Link>
           </div>
-          <div className='heading'>
-            <div>
-              {this.props.campaign
-                ? this.props.campaign === undefined
-                  ? 'CHARITY POP'
-                  : ''
-                : 'CHARITY POP'}
+          <div className='menu-item-container'>
+            <Link to='/build-campaign'>
+              <div className='menu-item'>
+                <FaPlus size={25} />
+              </div>
+            </Link>
+          </div>
+          <div className='menu-item-container'>
+            <div className='menu-item' onClick={this.signOut}>
+              <FaSignOutAlt size={25} />
             </div>
           </div>
         </div>
+        <div className='heading'>
+          <div>CHARITY POP</div>
+        </div>
+        <div className='stats'>$402 raised today</div>
+      </div>
+    );
+  };
+
+  header2 = () => {
+    return null;
+  };
+
+  render() {
+    return (
+      <>
+        {window.location.pathname.substr(0, 10) === '/campaign/'
+          ? this.header2()
+          : this.header1()}
       </>
     );
   }

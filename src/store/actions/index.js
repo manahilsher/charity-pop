@@ -183,6 +183,8 @@ export const fetchBalloonBundlesThunk = campaignID => async dispatch => {
       balloonBundleData.data.listBalloonBundles.items.filter(
         bb => bb.campaignID === campaignID
       );
+    balloonBundles.sort((a, b) => a.order > b.order);
+    console.log(balloonBundles);
     dispatch({ type: FETCH_BALLOONBUNDLES, payload: balloonBundles });
   } catch (err) {
     console.log('error fetching balloonBundles');

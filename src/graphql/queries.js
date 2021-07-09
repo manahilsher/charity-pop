@@ -14,6 +14,8 @@ export const getCampaign = /* GraphQL */ `
       balloonBundles {
         items {
           id
+          name
+          order
           active
           min
           max
@@ -63,6 +65,8 @@ export const getBalloonBundle = /* GraphQL */ `
   query GetBalloonBundle($id: ID!) {
     getBalloonBundle(id: $id) {
       id
+      name
+      order
       active
       min
       max
@@ -118,6 +122,8 @@ export const listBalloonBundles = /* GraphQL */ `
     listBalloonBundles(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        name
+        order
         active
         min
         max
@@ -164,6 +170,8 @@ export const getBalloon = /* GraphQL */ `
       balloonBundleID
       balloonBundle {
         id
+        name
+        order
         active
         min
         max
@@ -216,6 +224,8 @@ export const listBalloons = /* GraphQL */ `
         balloonBundleID
         balloonBundle {
           id
+          name
+          order
           active
           min
           max
