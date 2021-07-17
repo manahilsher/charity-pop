@@ -29,7 +29,7 @@ class Campaigns extends React.Component {
   };
 
   renderCampaigns = () => {
-    const campaigns = this.props.campaigns.map(c => {
+    let campaigns = this.props.campaigns.map(c => {
       return <CampaignCard key={c.id} campaign={c} />;
     });
     return campaigns;
