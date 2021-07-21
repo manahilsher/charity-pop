@@ -21,9 +21,6 @@ class Campaign extends React.Component {
     // this.renderStars();
     window.addEventListener('resize', this.resizeCanvas, false);
     await this.props.fetchCampaignThunk(this.props.match.params.id);
-    console.log('um');
-    console.log(this.props.match.params.id);
-    console.log(this.props.campaign);
     await this.props.fetchBalloonBundlesThunk(this.props.campaign.id);
     this.props.balloonBundles.forEach(async bb => {
       await this.props.fetchBalloonsThunk(bb.id);
