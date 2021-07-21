@@ -17,7 +17,7 @@ class Header extends React.Component {
     }
   };
 
-  header1 = () => {
+  campaignsPageHeader = () => {
     return (
       <div id='header'>
         <div className='main-header'>
@@ -51,19 +51,11 @@ class Header extends React.Component {
           </div>
           <div className='stats'>$402 raised today</div>
         </div>
-        <div className='search-container'>
-          <input
-            type='text'
-            id='search-campaigns'
-            name='search-campaigns'
-            placeholder='Search campaigns'
-          ></input>
-        </div>
       </div>
     );
   };
 
-  header2 = () => {
+  campaignPageHeader = () => {
     return null;
   };
 
@@ -71,8 +63,8 @@ class Header extends React.Component {
     return (
       <>
         {window.location.pathname.substr(0, 10) === '/campaign/'
-          ? this.header2()
-          : this.header1()}
+          ? this.campaignPageHeader()
+          : this.campaignsPageHeader()}
       </>
     );
   }
@@ -82,7 +74,8 @@ const mapState = state => {
   console.log(state.campaignsReducer);
   if (state.campaignsReducer.selectedCampaign)
     return {
-      campaign: state.campaignsReducer.selectedCampaign
+      campaign: state.campaignsReducer.selectedCampaign,
+      campaigns: state.campaignsReducer.campaigns
     };
   else return {};
 };
