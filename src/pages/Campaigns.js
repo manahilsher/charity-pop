@@ -4,14 +4,20 @@ import { connect } from 'react-redux';
 import {
   editCampaignThunk,
   deleteCampaignThunk,
-  fetchCampaignsThunk
+  fetchCampaignsThunk,
+  subscribeCampaignsListener,
+  unsubscribeCampaignsListener
 } from '../store/actions';
 import CampaignCard from '../components/CampaignCard';
 
 class Campaigns extends React.Component {
   async componentDidMount() {
     await this.props.fetchCampaignsThunk();
-    console.log('um');
+    await this.props.subscribeCampaignsListener();
+  }
+
+  async componentWillUnmount() {
+    await this.props.unsubscribeCampaignsListener();
   }
 
   onCreateCampaign = () => {
@@ -29,6 +35,7 @@ class Campaigns extends React.Component {
   };
 
   renderCampaigns = () => {
+    console.log('render campaigns');
     let campaigns = this.props.campaigns.map(c => {
       return <CampaignCard key={c.id} campaign={c} />;
     });
@@ -36,6 +43,7 @@ class Campaigns extends React.Component {
   };
 
   render() {
+    console.log(this.props.campaigns);
     return (
       <>
         <div className='page'>
@@ -49,6 +57,9 @@ class Campaigns extends React.Component {
 }
 
 const mapState = state => {
+  console.log('state updated???');
+  // state is updating but for some reason not rerendering
+  console.log(state.campaignsReducer.campaigns);
   return {
     campaigns: state.campaignsReducer.campaigns
   };
@@ -57,5 +68,7 @@ const mapState = state => {
 export default connect(mapState, {
   fetchCampaignsThunk,
   editCampaignThunk,
-  deleteCampaignThunk
+  deleteCampaignThunk,
+  subscribeCampaignsListener,
+  unsubscribeCampaignsListener
 })(Campaigns);
