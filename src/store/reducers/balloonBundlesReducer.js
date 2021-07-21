@@ -23,7 +23,7 @@ export default (state = { balloonBundles: [] }, action) => {
       console.log(action.payload);
       let newStateWithUpdatedBalloonBundle = { ...state };
       let balloonBundleIdx = state.balloonBundles.findIndex(
-        a => a.id === action.payload.id
+        bb => bb.id === action.payload.id
       );
       newStateWithUpdatedBalloonBundle.balloonBundles[balloonBundleIdx] =
         action.payload;

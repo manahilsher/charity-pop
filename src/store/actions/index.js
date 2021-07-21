@@ -6,13 +6,15 @@ import {
   // DELETE_BALLOON
   FETCH_CAMPAIGNS,
   UNSELECT_CAMPAIGN,
-  // CREATE_CAMPAIGN,
+  CREATE_CAMPAIGN,
   FETCH_CAMPAIGN,
   // UPDATE_CAMPAIGN,
   // DELETE_CAMPAIGN
   FETCH_BALLOONBUNDLES,
   // CREATE_BALLOONBUNDLE,
-  FETCH_BALLOONBUNDLE
+  FETCH_BALLOONBUNDLE,
+  UPDATE_BALLOON,
+  UPDATE_BALLOONBUNDLE
   // UPDATE_BALLOONBUNDLE,
   // DELETE_BALLOONBUNDLE
 } from './types';
@@ -33,6 +35,11 @@ import {
 } from '../../graphql/queries';
 
 import awsExports from '../../aws-exports';
+import {
+  onCreateCampaign,
+  onUpdateBalloon,
+  onUpdateBalloonBundle
+} from '../../graphql/subscriptions';
 Amplify.configure(awsExports);
 
 /* BALLOONS */
@@ -79,6 +86,33 @@ export const editBalloonThunk = balloon => async () => {
 export const deleteBalloonThunk = id => () => {
   console.log('delete balloon');
   console.log(id);
+};
+
+export const subscribeBalloonsListener = campaignID => async dispatch => {
+  await API.graphql(graphqlOperation(onUpdateBalloon)).subscribe({
+    next: ({ provider, value }) => {
+      const updatedBalloon = value.data.onUpdateBalloon;
+      if (updatedBalloon.balloonBundle.campaignID === campaignID) {
+        console.log("IT'S A MATCH!");
+        dispatch({
+          type: UPDATE_BALLOON,
+          payload: {
+            bbID: updatedBalloon.balloonBundleID,
+            balloon: updatedBalloon
+          }
+        });
+      }
+    },
+    error: error => console.warn(error)
+  });
+};
+
+export const unsubscribeBalloonsListener = () => async dispatch => {
+  try {
+    await API.graphql(graphqlOperation(onUpdateBalloon)).unsubscribe();
+  } catch (err) {
+    console.log('error unsubscribing to balloons:', err);
+  }
 };
 
 /* CAMPAIGNS */
@@ -132,6 +166,30 @@ export const editCampaignThunk = campaign => () => {
 export const deleteCampaignThunk = id => () => {
   console.log('delete campaign');
   console.log(id);
+};
+
+export const subscribeCampaignsListener = () => async dispatch => {
+  await API.graphql(graphqlOperation(onCreateCampaign)).subscribe({
+    next: ({ provider, value }) => {
+      const createdCampaign = value.data.onCreateCampaign;
+      console.log("IT'S A MATCH!");
+      dispatch({
+        type: CREATE_CAMPAIGN,
+        payload: {
+          createdCampaign
+        }
+      });
+    },
+    error: error => console.warn(error)
+  });
+};
+
+export const unsubscribeCampaignsListener = () => async dispatch => {
+  try {
+    await API.graphql(graphqlOperation(onCreateCampaign)).unsubscribe();
+  } catch (err) {
+    console.log('error unsubscribing to balloons:', err);
+  }
 };
 
 /* BALLOONBUNDLES */
@@ -206,6 +264,30 @@ export const editBalloonBundleThunk = balloonBundle => () => {
 export const deleteBalloonBundleThunk = id => () => {
   console.log('delete balloonBundle');
   console.log(id);
+};
+
+export const subscribeBalloonBundlesListener = campaignID => async dispatch => {
+  await API.graphql(graphqlOperation(onUpdateBalloonBundle)).subscribe({
+    next: ({ provider, value }) => {
+      const updatedBalloonBundle = value.data.onUpdateBalloonBundle;
+      if (updatedBalloonBundle.campaignID === campaignID) {
+        console.log("IT'S A MATCH!");
+        dispatch({
+          type: UPDATE_BALLOONBUNDLE,
+          payload: updatedBalloonBundle
+        });
+      }
+    },
+    error: error => console.warn(error)
+  });
+};
+
+export const unsubscribeBalloonBundlesListener = () => async dispatch => {
+  try {
+    await API.graphql(graphqlOperation(onUpdateBalloonBundle)).unsubscribe();
+  } catch (err) {
+    console.log('error unsubscribing to balloons:', err);
+  }
 };
 
 /* USERS */

@@ -19,18 +19,20 @@ export default (state = { balloons: [] }, action) => {
       return { ...state, selectedBalloon: action.payload };
     case DELETE_BALLOON:
       let newStateWithDeletedBalloon = { ...state };
-      newStateWithDeletedBalloon.balloons = state.balloons.filter(
-        a => a.id !== action.payload.id
-      );
+      newStateWithDeletedBalloon.balloons = state[
+        `${action.payload.bbID}-balloons`
+      ].filter(a => a.id !== action.payload.id);
       return newStateWithDeletedBalloon;
     case UPDATE_BALLOON:
       console.log('update balloon in reducer');
       console.log(action.payload);
       let newStateWithUpdatedBalloon = { ...state };
-      let balloonIdx = state.balloons.findIndex(
-        a => a.id === action.payload.id
+      let balloonIdx = state[`${action.payload.bbID}-balloons`].findIndex(
+        b => b.id === action.payload.balloon.id
       );
-      newStateWithUpdatedBalloon.balloons[balloonIdx] = action.payload;
+      newStateWithUpdatedBalloon[`${action.payload.bbID}-balloons`][
+        balloonIdx
+      ] = action.payload.balloon;
       return newStateWithUpdatedBalloon;
     case CREATE_BALLOON:
       console.log('create balloon in reducer');

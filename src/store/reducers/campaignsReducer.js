@@ -38,7 +38,9 @@ export default (state = { campaigns: [] }, action) => {
       console.log('create campaign in reducer');
       console.log(action.payload);
       let newStateWithCreatedCampaign = { ...state };
-      newStateWithCreatedCampaign.campaigns.push(action.payload);
+      newStateWithCreatedCampaign.campaigns.push(
+        action.payload.createdCampaign
+      );
       console.log(newStateWithCreatedCampaign);
       return newStateWithCreatedCampaign;
     default:

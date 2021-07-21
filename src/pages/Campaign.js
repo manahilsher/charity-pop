@@ -13,7 +13,11 @@ import {
   fetchCampaignThunk,
   fetchBalloonsThunk,
   fetchBalloonBundlesThunk,
-  unselectCampaignThunk
+  unselectCampaignThunk,
+  subscribeBalloonsListener,
+  unsubscribeBalloonsListener,
+  subscribeBalloonBundlesListener,
+  unsubscribeBalloonBundlesListener
 } from '../store/actions';
 
 class Campaign extends React.Component {
@@ -25,9 +29,14 @@ class Campaign extends React.Component {
     this.props.balloonBundles.forEach(async bb => {
       await this.props.fetchBalloonsThunk(bb.id);
     });
+
+    await this.props.subscribeBalloonsListener(this.props.campaign.id);
+    await this.props.subscribeBalloonBundlesListener(this.props.campaign.id);
   }
 
   async componentWillUnmount() {
+    await this.props.unsubscribeBalloonsListener();
+    await this.props.unsubscribeBalloonBundlesListener(this.props.campaign.id);
     await this.props.unselectCampaignThunk();
   }
 
@@ -179,5 +188,9 @@ export default connect(mapState, {
   deleteCampaignThunk,
   fetchBalloonsThunk,
   fetchBalloonBundlesThunk,
-  unselectCampaignThunk
+  unselectCampaignThunk,
+  subscribeBalloonsListener,
+  unsubscribeBalloonsListener,
+  subscribeBalloonBundlesListener,
+  unsubscribeBalloonBundlesListener
 })(Campaign);
