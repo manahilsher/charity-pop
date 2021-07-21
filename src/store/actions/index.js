@@ -89,8 +89,10 @@ export const deleteBalloonThunk = id => () => {
 };
 
 export const subscribeBalloonsListener = campaignID => async dispatch => {
+  console.log('subscribeBalloonsListener');
   await API.graphql(graphqlOperation(onUpdateBalloon)).subscribe({
     next: ({ provider, value }) => {
+      console.log('subscriptionn');
       const updatedBalloon = value.data.onUpdateBalloon;
       if (updatedBalloon.balloonBundle.campaignID === campaignID) {
         console.log("IT'S A MATCH!");
@@ -267,9 +269,15 @@ export const deleteBalloonBundleThunk = id => () => {
 };
 
 export const subscribeBalloonBundlesListener = campaignID => async dispatch => {
+  console.log('subscribeBalloonBundlesListener');
+  console.log(campaignID);
   await API.graphql(graphqlOperation(onUpdateBalloonBundle)).subscribe({
     next: ({ provider, value }) => {
+      console.log(value);
       const updatedBalloonBundle = value.data.onUpdateBalloonBundle;
+      console.log('ON UPDATE BALLOON BUNDLE');
+      console.log(updatedBalloonBundle);
+      console.log(campaignID);
       if (updatedBalloonBundle.campaignID === campaignID) {
         console.log("IT'S A MATCH!");
         dispatch({

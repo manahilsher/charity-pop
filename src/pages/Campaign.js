@@ -31,12 +31,13 @@ class Campaign extends React.Component {
     });
 
     await this.props.subscribeBalloonsListener(this.props.campaign.id);
+    // balloon bundles listener not working, possibly because of lambda changes not registering?
     await this.props.subscribeBalloonBundlesListener(this.props.campaign.id);
   }
 
   async componentWillUnmount() {
     await this.props.unsubscribeBalloonsListener();
-    await this.props.unsubscribeBalloonBundlesListener(this.props.campaign.id);
+    await this.props.unsubscribeBalloonBundlesListener();
     await this.props.unselectCampaignThunk();
   }
 
