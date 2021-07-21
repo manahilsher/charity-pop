@@ -21,7 +21,8 @@ import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import {
   createBalloon,
   createCampaign,
-  createBalloonBundle
+  createBalloonBundle,
+  updateBalloon
 } from '../../graphql/mutations';
 import {
   listBalloons,
@@ -65,9 +66,14 @@ export const fetchBalloonsThunk = bbID => async dispatch => {
   }
 };
 
-export const editBalloonThunk = balloon => () => {
+export const editBalloonThunk = balloon => async () => {
   console.log('edit balloon');
   console.log(balloon);
+  try {
+    await API.graphql(graphqlOperation(updateBalloon, { input: balloon }));
+  } catch (err) {
+    console.log('error updating balloon:', err);
+  }
 };
 
 export const deleteBalloonThunk = id => () => {
