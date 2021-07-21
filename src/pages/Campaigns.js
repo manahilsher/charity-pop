@@ -11,6 +11,11 @@ import {
 import CampaignCard from '../components/CampaignCard';
 
 class Campaigns extends React.Component {
+  state = {
+    searchType: 'name',
+    search: ''
+  };
+
   async componentDidMount() {
     await this.props.fetchCampaignsThunk();
     await this.props.subscribeCampaignsListener();
@@ -19,6 +24,16 @@ class Campaigns extends React.Component {
   async componentWillUnmount() {
     await this.props.unsubscribeCampaignsListener();
   }
+
+  onSearch = e => {
+    const t = e.target.value;
+    console.log(t);
+    this.setState({ search: e.target.value });
+  };
+
+  onChangeSearchType = searchType => {
+    this.setState({ searchType });
+  };
 
   onCreateCampaign = () => {
     const campaign = {
@@ -36,16 +51,81 @@ class Campaigns extends React.Component {
 
   renderCampaigns = () => {
     console.log('render campaigns');
-    let campaigns = this.props.campaigns.map(c => {
+    let campaigns = [];
+
+    if (this.state.search === '') campaigns = [...this.props.campaigns];
+    else campaigns = this.props.campaigns.filter(this.filterCampaign);
+
+    let renderedCampaigns = campaigns.map(c => {
       return <CampaignCard key={c.id} campaign={c} />;
     });
-    return campaigns;
+    return renderedCampaigns;
+  };
+
+  filterCampaign = c => {
+    console.log(c);
+    let s = this.state.search.toLowerCase();
+    switch (this.state.searchType) {
+      case 'name':
+        if (c.name.toLowerCase().indexOf(s) !== -1) return true;
+        else return false;
+      case 'id':
+        if (c.id.toLowerCase().indexOf(s) !== -1) return true;
+        else return false;
+      case 'owner':
+        if (c.ownerID.toLowerCase().indexOf(s) !== -1) return true;
+        else return false;
+      default:
+        return false;
+    }
   };
 
   render() {
     console.log(this.props.campaigns);
+    let s = this.state.searchType;
     return (
       <>
+        <div id='search-container'>
+          <input
+            type='text'
+            id='search-campaigns'
+            name='search-campaigns'
+            placeholder='Search campaigns'
+            onChange={this.onSearch}
+          ></input>
+          <div id='search-types'>
+            <div
+              className='search-type'
+              onClick={() => this.onChangeSearchType('name')}
+              style={{
+                backgroundColor: s === 'name' ? `#7cdaf1` : `aliceblue`,
+                color: s === 'name' ? `aliceblue` : `#7cdaf1`
+              }}
+            >
+              Name
+            </div>
+            <div
+              className='search-type'
+              onClick={() => this.onChangeSearchType('id')}
+              style={{
+                backgroundColor: s === 'id' ? `#7cdaf1` : `aliceblue`,
+                color: s === 'id' ? `aliceblue` : `#7cdaf1`
+              }}
+            >
+              ID
+            </div>
+            <div
+              className='search-type'
+              onClick={() => this.onChangeSearchType('owner')}
+              style={{
+                backgroundColor: s === 'owner' ? `#7cdaf1` : `aliceblue`,
+                color: s === 'owner' ? `aliceblue` : `#7cdaf1`
+              }}
+            >
+              Owner
+            </div>
+          </div>
+        </div>
         <div className='page'>
           <div className='campaigns-container'>
             {this.props.campaigns ? this.renderCampaigns() : null}

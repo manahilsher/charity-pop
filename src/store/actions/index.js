@@ -188,7 +188,7 @@ export const unsubscribeCampaignsListener = () => async dispatch => {
   try {
     await API.graphql(graphqlOperation(onCreateCampaign)).unsubscribe();
   } catch (err) {
-    console.log('error unsubscribing to balloons:', err);
+    console.log('error unsubscribing to campaigns:', err);
   }
 };
 
@@ -286,7 +286,7 @@ export const unsubscribeBalloonBundlesListener = () => async dispatch => {
   try {
     await API.graphql(graphqlOperation(onUpdateBalloonBundle)).unsubscribe();
   } catch (err) {
-    console.log('error unsubscribing to balloons:', err);
+    console.log('error unsubscribing to balloon bundles:', err);
   }
 };
 
