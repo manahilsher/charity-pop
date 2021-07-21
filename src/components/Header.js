@@ -20,35 +20,45 @@ class Header extends React.Component {
   header1 = () => {
     return (
       <div id='header'>
-        <div id='menu'>
-          <div className='menu-item-container'>
-            <Link to='/'>
-              <div className='logo'>
-                <img
-                  src='/red-balloon.png'
-                  alt='red-balloon-logo'
-                  className='header-logo'
-                />
+        <div className='main-header'>
+          <div id='menu'>
+            <div className='menu-item-container'>
+              <Link to='/'>
+                <div className='logo'>
+                  <img
+                    src='/red-balloon.png'
+                    alt='red-balloon-logo'
+                    className='header-logo'
+                  />
+                </div>
+              </Link>
+            </div>
+            <div className='menu-item-container'>
+              <Link to='/build-campaign'>
+                <div className='menu-item'>
+                  <FaPlus size={20} />
+                </div>
+              </Link>
+            </div>
+            <div className='menu-item-container'>
+              <div className='menu-item' onClick={this.signOut}>
+                <FaSignOutAlt size={20} />
               </div>
-            </Link>
-          </div>
-          <div className='menu-item-container'>
-            <Link to='/build-campaign'>
-              <div className='menu-item'>
-                <FaPlus size={20} />
-              </div>
-            </Link>
-          </div>
-          <div className='menu-item-container'>
-            <div className='menu-item' onClick={this.signOut}>
-              <FaSignOutAlt size={20} />
             </div>
           </div>
+          <div className='heading' id='charity-pop-heading'>
+            CHARITY POP
+          </div>
+          <div className='stats'>$402 raised today</div>
         </div>
-        <div className='heading' id='charity-pop-heading'>
-          CHARITY POP
+        <div className='search-container'>
+          <input
+            type='text'
+            id='search-campaigns'
+            name='search-campaigns'
+            placeholder='Search campaigns'
+          ></input>
         </div>
-        <div className='stats'>$402 raised today</div>
       </div>
     );
   };
