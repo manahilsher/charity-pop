@@ -38,7 +38,7 @@ class Campaigns extends React.Component {
   onCreateCampaign = () => {
     const campaign = {
       id: 1,
-      name: 'BC Charity Week',
+      name: 'BC Charity Week 21',
       blurb: 'Donate to orphans and children in need!',
       image:
         'https://images.unsplash.com/photo-1623073284770-c9c72cfd2c60?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=401&q=80',
